@@ -19,7 +19,7 @@
 
 
 
-class ModalOpener extends ModalDialog {
+class ModalOpener extends HTMLElement {
   constructor() {
     super();
 
