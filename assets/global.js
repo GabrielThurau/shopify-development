@@ -458,7 +458,7 @@ class ModalDialog extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log(this.moved);
+    console.log(this);
     console.log('hello');
     if (this.moved) return;
     this.moved = true;
