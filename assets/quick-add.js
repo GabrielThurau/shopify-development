@@ -18,6 +18,26 @@
 
 
 
+
+class ModalOpener extends HTMLElement {
+  constructor() {
+    super();
+
+    const button = this.querySelector('button');
+
+    if (!button) return;
+    button.addEventListener('click', () => {
+      const modal = document.querySelector(this.getAttribute('data-modal'));
+      console.log(modal);
+      if (modal) modal.show(button);
+    });
+  }
+}
+customElements.define('modal-opener', ModalOpener);
+
+
+
+
 if (!customElements.get('quick-add-modal')) {
   customElements.define('quick-add-modal', class QuickAddModal extends ModalDialog {
     constructor() {

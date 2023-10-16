@@ -484,20 +484,7 @@ class ModalDialog extends HTMLElement {
 }
 customElements.define('modal-dialog', ModalDialog);
 
-class ModalOpener extends HTMLElement {
-  constructor() {
-    super();
 
-    const button = this.querySelector('button');
-
-    if (!button) return;
-    button.addEventListener('click', () => {
-      const modal = document.querySelector(this.getAttribute('data-modal'));
-      if (modal) modal.show(button);
-    });
-  }
-}
-customElements.define('modal-opener', ModalOpener);
 
 class DeferredMedia extends HTMLElement {
   constructor() {
