@@ -37,7 +37,7 @@ class ModalOpener extends HTMLElement {
 customElements.define('modal-opener', ModalOpener);
 
 
-
+console.log('QuickAddModal and ModalOpener custom element are in this file')
 
 if (!customElements.get('quick-add-modal')) {
   customElements.define('quick-add-modal', class QuickAddModal extends ModalDialog {
