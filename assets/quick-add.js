@@ -31,9 +31,9 @@ if (!customElements.get('quick-add-modal')) {
           this.removeDOMElements();
           this.setInnerHTML(this.modalContent, this.productElement.innerHTML);
 
-          // if (window.Shopify && Shopify.PaymentButton) {
-          //   Shopify.PaymentButton.init();
-          // }
+          if (window.Shopify && Shopify.PaymentButton) {
+            Shopify.PaymentButton.init();
+          }
 
           if (window.ProductModel) window.ProductModel.loadShopifyXR();
 
