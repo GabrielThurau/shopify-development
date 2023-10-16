@@ -462,6 +462,7 @@ class ModalDialog extends HTMLElement {
     console.log('hello');
     if (this.moved) return;
     this.moved = true;
+    this.pizza = true;
     document.body.appendChild(this);
   }
 
