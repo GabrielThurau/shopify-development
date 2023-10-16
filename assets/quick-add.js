@@ -97,6 +97,7 @@ if (!customElements.get('quick-add-modal')) {
         Array.from(oldScriptTag.attributes).forEach(attribute => {
           newScriptTag.setAttribute(attribute.name, attribute.value)
         });
+        console.log(oldScriptTag.attributes)
         newScriptTag.appendChild(document.createTextNode(oldScriptTag.innerHTML));
         oldScriptTag.parentNode.replaceChild(newScriptTag, oldScriptTag);
       });
