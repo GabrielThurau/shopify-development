@@ -435,7 +435,7 @@ class HeaderDrawer extends MenuDrawer {
 }
 
 customElements.define('header-drawer', HeaderDrawer);
-
+console.log('ModalDialog element is found in this file')
 class ModalDialog extends HTMLElement {
   constructor() {
     super();
