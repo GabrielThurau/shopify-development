@@ -111,6 +111,30 @@ if (!customElements.get('quick-add-modal')) {
   });
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // here for reference because it's using methods from this custom element
 
 // class ModalDialog extends HTMLElement {
