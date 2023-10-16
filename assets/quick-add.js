@@ -19,21 +19,21 @@
 
 
 
-class ModalOpener extends HTMLElement {
-  constructor() {
-    super();
+// class ModalOpener extends HTMLElement {
+//   constructor() {
+//     super();
 
-    const button = this.querySelector('button');
+//     const button = this.querySelector('button');
 
-    if (!button) return;
-    button.addEventListener('click', () => {
-      const modal = document.querySelector(this.getAttribute('data-modal'));
-      console.log(modal);
-      if (modal) modal.show(button);
-    });
-  }
-}
-customElements.define('modal-opener', ModalOpener);
+//     if (!button) return;
+//     button.addEventListener('click', () => {
+//       const modal = document.querySelector(this.getAttribute('data-modal'));
+//       console.log(modal);
+//       if (modal) modal.show(button);
+//     });
+//   }
+// }
+// customElements.define('modal-opener', ModalOpener);
 
 
 
