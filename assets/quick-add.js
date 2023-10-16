@@ -65,9 +65,7 @@ if (!customElements.get('quick-add-modal')) {
         .then((response) => response.text())
         .then((responseText) => {
           const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
-          console.log(responseHTML);
           this.productElement = responseHTML.querySelector('section[id^="MainProduct-"]');
-          console.log(this.productElement);
           this.preventDuplicatedIDs();
           this.removeDOMElements();
           this.setInnerHTML(this.modalContent, this.productElement.innerHTML);
@@ -99,6 +97,7 @@ if (!customElements.get('quick-add-modal')) {
         Array.from(oldScriptTag.attributes).forEach(attribute => {
           newScriptTag.setAttribute(attribute.name, attribute.value)
         });
+        console.dir(newScriptTag);
         newScriptTag.appendChild(document.createTextNode(oldScriptTag.innerHTML));
         oldScriptTag.parentNode.replaceChild(newScriptTag, oldScriptTag);
       });
