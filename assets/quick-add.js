@@ -15,7 +15,7 @@ if (!customElements.get('quick-add-modal')) {
     }
 
     show(opener) {
-      console.log(opener);
+      console.trace(opener);
       opener.setAttribute('aria-disabled', true);
       opener.classList.add('loading');
       opener.querySelector('.loading-overlay__spinner').classList.remove('hidden');
