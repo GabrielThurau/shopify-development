@@ -1,3 +1,23 @@
+// class ModalOpener extends HTMLElement {
+//   constructor() {
+//     super();
+
+//     const button = this.querySelector('button');
+
+//     if (!button) return;
+//     button.addEventListener('click', () => {
+//       const modal = document.querySelector(this.getAttribute('data-modal'));
+//       if (modal) modal.show(button);
+//     });
+//   }
+// }
+// customElements.define('modal-opener', ModalOpener);
+
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ that's where the opener argument comes from. The data modal in that click listener is sent to modal.show()
+
+
+
+
 if (!customElements.get('quick-add-modal')) {
   customElements.define('quick-add-modal', class QuickAddModal extends ModalDialog {
     constructor() {
