@@ -1,9 +1,5 @@
 /* Color custom properties */
 
-p {
-  color: pink;
-}
-
 :root,
 .color-background-1 {
   --color-foreground: var(--color-base-text);
