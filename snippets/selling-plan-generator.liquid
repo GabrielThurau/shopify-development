@@ -14,4 +14,12 @@
   myUrlWithParams.searchParams.append('price', '200');
 
   console.log(myUrlWithParams.href);
+
+  const productSelect = document.getElementById('product-select');
+
+  productSelect.addEventListener("change", (event) => {
+    console.log('something changed');
+  });
+
+  
 </script>
