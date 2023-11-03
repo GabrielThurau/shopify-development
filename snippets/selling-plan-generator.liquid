@@ -16,7 +16,7 @@
   const productSelect = document.getElementById('product-select');
 
   productSelect.addEventListener("change", (event) => {
-    let sellingPlanID = event.target.selectedOptions[0].value;
+    let sellingPlanID = event.target.selectedOptions[0].value.toString();
     console.log(sellingPlanID);
    sellingPlanURL.searchParams.append('selling_plan', sellingPlanID);
   });
