@@ -17,6 +17,7 @@
 
   productSelect.addEventListener("change", (event) => {
     let sellingPlanID = event.target.selectedOptions[0].value;
+    console.log(sellingPlanID);
    sellingPlanURL.searchParams.append('selling_plan', sellingPlanID);
   });
 
