@@ -19,7 +19,8 @@
     let sellingPlanID = event.target.selectedOptions[0].value.toString();
     console.log(sellingPlanID);
    sellingPlanURL.searchParams.set('selling_plan', sellingPlanID);
-    window.location.href = sellingPlanURL; 
+    history.pushState(sellingPlanURL);
+    // window.location.href = sellingPlanURL; 
   });
 
   
