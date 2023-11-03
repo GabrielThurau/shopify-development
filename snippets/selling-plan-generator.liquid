@@ -8,17 +8,14 @@
 </select>
 
 <script>
-  const sellingPlanURL = new URL('https://www.example.dev/');
-
-  // myUrlWithParams.searchParams.append('city', 'Rome');
-  // myUrlWithParams.searchParams.append('price', '200');
-
-  // console.log(myUrlWithParams.href);
+  
+  const sellingPlanURL = new URL('{{product.url}}'');
 
   const productSelect = document.getElementById('product-select');
 
   productSelect.addEventListener("change", (event) => {
-    console.log(event.target.selectedOptions[0].value);
+    let sellingPlanID = event.target.selectedOptions[0].value;
+   sellingPlanURL.searchParams.append('selling_plan', sellingPlanID);
   });
 
   
