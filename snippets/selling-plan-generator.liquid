@@ -19,7 +19,7 @@
     let sellingPlanID = event.target.selectedOptions[0].value.toString();
     console.log(sellingPlanID);
    sellingPlanURL.searchParams.set('selling_plan', sellingPlanID);
-   history.pushState({}, "", sellingPlanID);
+   history.pushState({}, "", sellingPlanURL);
   });
 
   
