@@ -9,19 +9,10 @@
 
 <script>
 
-  
-  
-  // const sellingPlanURL = new URL('https://9b69a1.myshopify.com/products/jason-robertson-rookie-card');
-
   const sellingPlanURL = new URL('{{request.origin}}{{ request.path }}')
-
-  console.log(sellingPlanURL);
-
   const productSelect = document.getElementById('product-select');
-
-  productSelect.addEventListener("change", (event) => {
+    productSelect.addEventListener("change", (event) => {
     let sellingPlanID = event.target.selectedOptions[0].value.toString();
-    console.log(sellingPlanID);
    sellingPlanURL.searchParams.set('selling_plan', sellingPlanID);
    history.pushState({}, "", sellingPlanURL);
   });
