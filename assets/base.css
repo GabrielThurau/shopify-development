@@ -1,19 +1,6 @@
 /* Color custom properties */
 
 
-@media (prefers-color-scheme: dark) {
-  body {
-    filter: invert(100%);
-    background-color: rgb(29, 32, 31) !important;
-  }
-  img,
-  .astro-code,
-  .emoji,
-  iframe /* for recaptcha */ {
-    filter: invert(100%) !important;
-  }
-}
-
 html {
   height: 100%;
 }
@@ -2981,5 +2968,21 @@ details-disclosure>details {
 
   .localization-form__select:focus {
     outline: transparent solid 1px;
+  }
+}
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+    color: black;
   }
 }
