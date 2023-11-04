@@ -214,6 +214,21 @@
           font-size: 1.6rem;
         }
       }
+
+      
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+    color: black;
+  }
+}
+
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
