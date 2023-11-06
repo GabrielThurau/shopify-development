@@ -57,7 +57,7 @@ cart-items.is-empty .title-wrapper-with-link,
 
 cart-items {
   display: block; 
-  &.cart__items {
+  & .cart__items {
     position: relative;
     padding-bottom: 3rem;
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
