@@ -52,7 +52,7 @@ cart-items.is-empty .title-wrapper-with-link,
 }
 
 cart-items {
-  display: block;
+  display: flex;
 }
 
 .cart__items {
