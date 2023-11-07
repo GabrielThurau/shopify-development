@@ -1,0 +1,74 @@
+
+const inventory = [
+  {%- for v in product.variants %}
+    { id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
+  {%- endfor %}
+];
+
+
+
+
+<div class="product">
+  <form>
+    <input type="hidden" class="product-variant-id" value="123">
+    <select name="id" class="options">
+      <option value="123">Standard</option>
+      <option value="456">Deluxe</option>
+    </select>
+  </form>
+</div>
+
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+
+    // Initial config
+    const threshold = 5;
+    const productSelector = '.product';
+    const optionsSelector = '.options';
+    const hiddenVariantIdInputSelector = '.product-variant-id';
+    const initialVariantId = '{{ product.selected_or_first_available_variant.id }}';
+
+    // Store stock quantities
+    const inventory = [
+      {%- for v in product.variants %}
+        { id: {{ v.id | json }}, quantity: {{ v.inventory_quantity | json }} },
+      {%- endfor %}
+    ];
+
+    // Find the root product element
+    const productEl = document.querySelector(productSelector);
+    if (!productEl) return;
+
+    // Find the options selector (we will append our low stock notice container to this)
+    const optionsEl = productEl.querySelector(optionsSelector);
+    if (!optionsEl) return;
+
+    // Append the notice container
+    optionsEl.insertAdjacentHTML('afterend', `<div class="stock-notice"></div>`);
+
+    // Method to update the content of the notice container
+    // if the stock is not above the threshold
+    function updateMessage(variantId) {
+      const stockNoticeEl = productEl.querySelector('.stock-notice');
+      if (!stockNoticeEl) return;
+      let message = '';
+      const variant = inventory.find(i => i.id === variantId);
+      if (variant && (variant.quantity > 0 && variant.quantity <= threshold)) {
+        message = `${variant.quantity} in stock`;
+      }
+      stockNoticeEl.textContent = message;
+    }
+
+    // Update the message on first page load
+    updateMessage(initialVariantId);
+
+    // Find the input that is updated with the selected id
+    const hiddenVariantIdInputEl = productEl.querySelector(hiddenVariantIdInputSelector);
+    if (!hiddenVariantIdInputEl) return;
+
+    // Watch the input for changes and update the message in response
+    hiddenVariantIdInputEl.addEventListener('change', (e) => updateMessage(e.target.value));
+
+  });
+</script>
