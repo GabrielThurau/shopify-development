@@ -37,7 +37,13 @@
       {%- endfor %}
     ];
 
-    console.log(inventory);
+    const inventory2 = [
+  {%- for v in product.variants %}
+    { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
+  {%- endfor %}
+];
+
+    console.log(inventory2);
 
     // Find the root product element
     const productEl = document.querySelector(productSelector);
