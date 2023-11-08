@@ -33,17 +33,22 @@
     // Store stock quantities
     const inventory = [
       {%- for v in product.variants %}
-        { id: {{ v.id | json }}, quantity: {{ v.inventory_quantity | json }} },
+        { id: {{ v.id | json }}, quantity: {{ v .inventory_quantity | json }} },
       {%- endfor %}
     ];
 
-    const inventory2 = [
-  {%- for v in product.variants %}
-    { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
-  {%- endfor %}
-];
-
-    console.log(inventory2);
+        const productInventory = [
+        {%- for v in product.variants %}
+          { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
+        {%- endfor %}
+      ];
+    
+      const restock = { restock: true };
+    const sufficient = { restock: false };
+    const result = Map.groupBy(productInventory, ({ quantity }) =>
+      quantity < 6 ? restock : sufficient,
+    );
+    console.log(result.get(restock));
 
     // Find the root product element
     const productEl = document.querySelector(productSelector);
