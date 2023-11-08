@@ -52,7 +52,10 @@
     // if the stock is not above the threshold
     function updateMessage(variantId) {
       const stockNoticeEl = productEl.querySelector('.stock-notice');
-      if (!stockNoticeEl) return;
+      if (!stockNoticeEl) {
+        console.log('no stock notice el');
+        return;
+      }
       let message = '';
       const variant = inventory.find(i => i.id === variantId);
       if (variant && (variant.quantity > 0 && variant.quantity <= threshold)) {
