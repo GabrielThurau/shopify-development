@@ -52,8 +52,7 @@
     optionsEl.insertAdjacentHTML('afterend', `<div class="stock-notice"></div>`);
 
       select.addEventListener('change', (e) => {
-     document.querySelector('.product-variant-id').value = e.target.selectedOptions[0].value;
-      console.log(hiddenVariantIdInputSelector);
+      document.querySelector('.product-variant-id').value = e.target.selectedOptions[0].value;
      });
 
     // Method to update the content of the notice container
