@@ -52,7 +52,7 @@
     optionsEl.insertAdjacentHTML('afterend', `<div class="stock-notice"></div>`);
 
       select.addEventListener('change', (e) => {
-     hiddenVariantIdInputSelector.value = e.target.selectedOptions[0].value;
+     document.querySelector('.product-variant-id').value = e.target.selectedOptions[0].value;
       console.log(hiddenVariantIdInputSelector);
      });
 
