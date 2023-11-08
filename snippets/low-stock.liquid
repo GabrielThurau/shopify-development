@@ -58,6 +58,7 @@
       }
       let message = '';
       const variant = inventory.find(i => i.id === variantId);
+      console.log(variant);
       if (variant && (variant.quantity > 0 && variant.quantity <= threshold)) {
         message = `${variant.quantity} in stock`;
       }
