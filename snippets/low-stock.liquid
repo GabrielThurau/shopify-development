@@ -82,7 +82,7 @@
     if (!hiddenVariantIdInputEl) return;
 
     // Watch the input for changes and update the message in response
-    hiddenVariantIdInputEl.addEventListener('change', (e) => updateMessage(e.target.value));
+    hiddenVariantIdInputEl.addEventListener('change', (e) => updateMessage(e.target.selectedOptions[0].value));
 
   });
 </script>
