@@ -27,6 +27,8 @@
     const optionsSelector = '.options';
     const hiddenVariantIdInputSelector = '.product-variant-id';
     const initialVariantId = '{{ product.selected_or_first_available_variant.id }}';
+    const input = demo.querySelector('#input');
+    const select = demo.querySelector('.options')
 
     // Store stock quantities
     const inventory = [
@@ -48,6 +50,11 @@
 
     // Append the notice container
     optionsEl.insertAdjacentHTML('afterend', `<div class="stock-notice"></div>`);
+
+      select.addEventListener('change', (e) => {
+     hiddenVariantIdInputSelector.value = e.target.value;
+     hiddenVariantIdInputSelector.dispatchEvent(new Event('change'))
+     });
 
     // Method to update the content of the notice container
     // if the stock is not above the threshold
