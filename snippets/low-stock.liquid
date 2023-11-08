@@ -54,7 +54,7 @@
       select.addEventListener('change', (e) => {
      hiddenVariantIdInputSelector.value = e.target.value;
      console.log('change happened')
-     console.log(hiddenVariantIdInputSelector.value);
+     console.log(e.target);
      // hiddenVariantIdInputSelector.dispatchEvent(new Event('change'))
      });
 
