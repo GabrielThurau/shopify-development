@@ -1,0 +1,159 @@
+<style>
+.custom-upsell-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
+custom-upsell-product {
+  overflow-x: hidden;
+}
+.custom-upsell-products-item {
+  display: flex;
+  flex-direction: column;
+}
+.custom-upsell-products-title {
+  flex-grow: 1;
+}
+.custom-upsell-products-control {
+  display: flex;
+  justify-content: center;
+  transition: opacity 0.3s;
+}
+custom-upsell-product.loading .custom-upsell-products-control {
+  opacity: 0.75;
+}
+</style>
+
+{%- liquid
+  assign min = 0
+  assign default_max = 99
+-%}
+
+<div class="custom-upsell-products">
+
+  {%- for product in collection.products %}
+
+  {%- liquid
+
+    if product.has_only_default_variant == false
+      continue
+    endif
+
+    assign variant = product.variants.first
+
+    assign max = default_max
+    if variant.inventory_management == 'shopify' and variant.inventory_policy == 'deny'
+      assign max = variant.inventory_quantity
+    endif
+
+    if max < 1
+      continue
+    endif
+
+    assign quantity = 0
+    for cart_item in cart.items
+      if cart_item.id == variant.id
+        assign quantity = cart_item.quantity
+      endif
+    endfor
+
+  -%}
+
+  <custom-upsell-product data-id="{{ variant.id }}" data-max="{{ max }}">
+    <div class="custom-upsell-products-item">
+      <a href="{{ product.url }}" target="_blank">
+        <img
+          src="{{ product | img_url: '200x' }}"
+          alt="{{ product.title | escape }}"
+          width="200"
+          height="{{ 200 | divided_by: product.featured_image.aspect_ratio | round }}"
+        />
+      </a>
+      <div class="custom-upsell-products-text">
+        <h4 class="custom-upsell-products-title">{{ product.title }}</h4>
+        <p class="custom-upsell-products-price">{{ product.price | money }}</p>
+      </div>
+      <div class="custom-upsell-products-control">
+        <button
+          class="custom-upsell-products-decrease"
+          aria-label="{{ 'cart.label.decrease' | t | escape }}"
+          data-decrease
+          {% if quantity <= min %}disabled{% endif %}
+        >&minus;</button>
+        <input
+          class="custom-upsell-products-quantity"
+          type="text"
+          size="2"
+          value="{{ quantity }}"
+          aria-label="{{ 'cart.general.quantity' | t | escape }}"
+          data-quantity
+          readonly
+        />
+        <button
+          class="custom-upsell-products-increase"
+          aria-label="{{ 'cart.label.increase' | t | escape }}"
+          data-increase
+          {% if quantity >= max %}disabled{% endif %}
+        >&plus;</button>
+      </div>
+    </div>
+  </custom-upsell-product>
+
+{%- endfor %}
+</div>
+
+<script>
+class CustomUpsellProduct extends HTMLElement {
+  constructor() {
+    super();
+    this.cartAddUrl = `{{ routes.cart_add_url }}.js`;
+    this.cartUpdateUrl = `{{ routes.cart_update_url }}.js`;
+    this.min = {{ min }};
+    this.max = parseInt(this.getAttribute('data-max')) || {{ default_max }};
+    this.id = this.getAttribute('data-id');
+    this.quantityInput = this.querySelector('input[data-quantity]');
+    this.decreaseButton = this.querySelector('button[data-decrease]');
+    this.increaseButton = this.querySelector('button[data-increase]');
+    this.decreaseButton.addEventListener('click', () => this.quantity--);
+    this.increaseButton.addEventListener('click', () => this.quantity++);
+  }
+  get quantity() {
+    return this.quantityInput.value;
+  }
+  set quantity(value) {
+    if (value < this.min || value > this.max) return;
+    this.enableLoading();
+    this.updateCart(value)
+    .then(cart => this.quantityInput.value = this.getCartQuantity(cart))
+    .catch(err => console.error(err))
+    .finally(() => this.disableLoading());
+  }
+  enableLoading() {
+    this.classList.add('loading');
+    this.decreaseButton.disabled = true;
+    this.increaseButton.disabled = true;
+  }
+  disableLoading() {
+    this.classList.remove('loading');
+    this.decreaseButton.disabled = this.quantity <= this.min;
+    this.increaseButton.disabled = this.quantity >= this.max;
+  }
+  async updateCart(quantity) {
+    return (this.quantity > 0)
+      ? await this.postJson(this.cartUpdateUrl, { updates: { [this.id]: quantity } })
+      : await this.postJson(this.cartAddUrl, { items: [{ id: this.id, quantity }] });
+  }
+  async postJson(url, data = {}) {
+    const res = await fetch(url, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  }
+  getCartQuantity(cart) {
+    return cart?.items?.find(i => i.variant_id == this.id)?.quantity || 0;
+  }
+}
+customElements.define('custom-upsell-product', CustomUpsellProduct);
+</script>
