@@ -109,9 +109,58 @@ $('button#add-to-cart-button').on('click', function() {
     }
   });
 });
-</script>
 
+// this is the promise all functionality I want to incorporate
 
+ async function doFetches(VID, itemKey) {
+        const numberOfFetches = 2;
+        let sellingPlan = document.querySelector("#postId").value;
+
+        // objects for each call
+
+        let formData = {
+          'items': [{
+           'id': VID,
+            'selling_plan': sellingPlan,
+           'quantity': 1
+           }]
+         };
+          let updates = {
+              'id': itemKey,
+              'quantity': 0
+          }
+    
+        // objects for each call
+
+    const cartChange = await fetch('https://dosedaily.co/' + 'cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updates)
+    });
+    const cartAdd = await fetch('https://dosedaily.co/' + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    // array of Promises
+
+    const promiseBatch = Promise.all([cartChange, cartAdd]);
+    console.log(promiseBatch.length);
+
+    const cartResponses = (await promiseBatch).map(async (r, index) => {
+      if (index === numberOfFetches - 1) {
+        window.location.reload();
+      }
+    })
+
+    return cartResponses;
+    // array of Promises
+}
 
 
 
