@@ -201,9 +201,9 @@
   
 </style>
 
-{% assign upsell_products = product.metafields.upsells %}
+{% assign upsell_products = product.metafields.custom.upsells %}
 
-{% for product in upsell_products  %}
+{% for product in upsell_products %}
 
 <p class="product-title">{{ product.title }}</p>
 
