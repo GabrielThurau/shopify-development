@@ -1,0 +1,119 @@
+<script>
+
+
+
+function calculateTotal() {
+     
+  var priceArry = [];
+  $(".name_single_pro_check.is-checked input").each(function(){
+      var total = 0;
+      var single_Price = $(this).attr('data-price');
+      priceArry.push(single_Price);
+  });  
+  setTimeout(function() {
+   var total = 0; // variable to store the total
+   $.each(priceArry, function(index, value) {
+    total += parseFloat(value) || 0;
+   });
+  $('.total-count span.final_price').text(total.toFixed(2));
+  }, 1000);
+}
+
+let element = document.querySelector('.product-page__description--title');
+let element2, mainImage, activeID, currentPrice, firstPrice, firstCheck, firstDiv;
+
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.type === "attributes") {
+      firstPrice = document.querySelectorAll('.single_price')[0];
+      firstDiv = document.querySelector('.first-div');
+      currentPrice = document.querySelector("div.product-page--price.font--accent");
+      element2 = document.querySelector('.product-page--title.product-variant--title.active').textContent.trim();
+      activeID = document.querySelector('.product-page--title.product-variant--title.active').dataset.variantId;
+      firstCheck = document.querySelector("div.name_single_pro_wrapper > div:nth-child(1) > input");
+      mainImage = document.querySelector('div[data-active="true"] > img').src;
+      document.querySelectorAll('span.single_title')[0].textContent = element2;
+      document.querySelectorAll('.single_image > img')[0].src = mainImage; 
+      firstCheck.value = activeID;
+      firstPrice.textContent = currentPrice.textContent;
+      firstCheck.dataset.price = currentPrice.textContent.replace(/\$/g, '').trim();
+      firstDiv.id = "product-" + activeID;
+      calculateTotal();
+    }
+  });
+});
+
+observer.observe(element, {
+  childList: true,
+  attributes: true,
+  subtree: true,
+  attributeFilter: ['class'],
+});
+
+let activeTitle = document.querySelector('.product-page--title.active');
+let currentVarID = activeTitle.dataset.variantId;
+let selectOption = document.querySelector('.disclosure--toggle');
+
+$( document ).ready(function() {
+  calculateTotal();
+})
+
+$('.name_single_pro_check input, .name_single_pro_check label').click(function() {
+  if(!$(this).is(':checked')){
+    $(this).parent().removeClass("is-checked");
+    var product_val = $(this).val();
+    $("#product-"+product_val).hide();
+    $("#product-"+product_val).removeClass('name_single_active');
+  }
+  else{
+  $(this).parent().addClass("is-checked");
+  var product_val = $(this).val();
+  $("#product-" + product_val).show();
+    $("#product-"+product_val).addClass('name_single_active');
+  }
+  
+  calculateTotal();
+ 
+});    
+
+$('button#add-to-cart-button').on('click', function() {
+  var variants = []; // Create an empty array to store variant data
+
+  // Loop through each selected variant and retrieve its information
+  $('.name_single_pro_check.is-checked').each(function() {
+    var variantId = $(this).find('input').val(); // Get the selected variant ID
+    var quantity = 1; // Replace with the desired quantity
+
+    // Create an object to store the variant information
+    var variant = {
+      id: variantId,
+      quantity: quantity
+    };
+
+    // Add the variant object to the variants array
+    variants.push(variant);
+  });
+
+  // Send the variants data to the Shopify cart using AJAX
+  $.ajax({
+    type: 'POST',
+    url: '/cart/add.js', // Replace with the actual Shopify cart URL
+    data: {
+      items: variants
+    },
+    dataType: 'json',
+    success: function(response) {
+    },
+    error: function(xhr, status, error) {
+      // Handle error response, if any
+    }
+  });
+});
+</script>
+
+
+
+
+
+  
+</script>
