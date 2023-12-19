@@ -203,13 +203,14 @@
 
 {% assign upsell_products = product.metafields.custom.upsells %}
 
-{% for product in upsell_products %}
+
+
+<div class="ac_CS
+  {% for product in upsell_products %}
 
 <p class="product-title">{{ product.title }}</p>
 
 {% endfor %}
-
-<div class="ac_CS">
   <div>
     <h3>COMPLETE THE LOOK</h3>
     <div class="ac_CSImages">
