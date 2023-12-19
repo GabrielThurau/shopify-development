@@ -201,6 +201,12 @@
   
 </style>
 
+{% if product.metafields.custom.upsells.value != blank %}
+
+<h2>This has an upsell metafield attached to it!</h2>
+
+{% endif %}
+
 {% assign upsell_products = product.metafields.custom.upsells.value %}
 
 <div class="ac_CS">
