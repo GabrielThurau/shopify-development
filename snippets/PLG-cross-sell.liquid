@@ -241,7 +241,7 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
     <div class="ac_CSImages">
       <ul>
         {% for upsell in product.custom.upsells.value limit: 4  %}
-        <li>{ upsell.featured_img}}</li>
+        <li>{{upsell.featured_image}}</li>
         {% endfor %}
       </ul>
     </div>
