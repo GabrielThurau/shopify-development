@@ -47,11 +47,13 @@
     >
   {%- endif -%}
 
+  {% comment %}
+
   {% render 'selling-plan-generator', product: product %}
 
-    <script src="{{ 'upsell.js' | asset_url }}" defer="defer"></script>
+  {% endcomment %}
 
-  {% render 'custom-upsell-product', product: product %}
+  {% render 'PLG-cross-sell', product: product %}
 
   {% render 'low-stock', product: product %}
 
