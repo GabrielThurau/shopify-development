@@ -201,9 +201,13 @@
   
 </style>
 
+{% assign upsell_products = product.metafields.upsell %}
 
+{% for product in upsell_products  %}
 
+<p class="product-title">{{ product.title }}</p>
 
+{% endfor %}
 
 <div class="ac_CS">
   <div>
