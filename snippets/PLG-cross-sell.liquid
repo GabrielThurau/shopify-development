@@ -201,6 +201,12 @@
   
 </style>
 
+  <!-- {% for product in upsell_products %}
+
+<p class="product-title">{{ product.title }}</p>
+
+{% endfor %} -->
+
 {% if product.metafields.custom.upsells.value != blank %}
 
 <h2>This has an upsell metafield attached to it!</h2>
@@ -210,11 +216,6 @@
 {% assign upsell_products = product.metafields.custom.upsells.value %}
 
 <div class="ac_CS">
-  {% for product in upsell_products %}
-
-<p class="product-title">{{ product.title }}</p>
-
-{% endfor %}
   <div>
     <h3>COMPLETE THE LOOK</h3>
     <div class="ac_CSImages">
