@@ -287,3 +287,92 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
     </div>
   </div>
 </div>
+
+
+<script>
+
+
+let ac_CSProductLabels = document.querySelectorAll('.ac_CSProduct');
+let ac_CSProductImages = document.querySelectorAll('.ac_CSImages > ul > li');
+let prdCnt = 0, totalPrice = 0, priceTally = 0, formData = { 'items': [] };
+const ac_CSdoAddToCart = function(data){
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json()).then(res => { /*console.log(res);*/
+    var cartChangeEvent = new Event("cart:refresh");
+    document.dispatchEvent(cartChangeEvent);
+    document.querySelector('nav.header__secondary-nav a[href="/cart"]').click();
+  }).catch(error => { console.error('An error occurred:', error); });
+};
+for(let cS=0;ac_CSProductLabels[cS];cS++){
+  //set product handles in crossSell DOM elements
+  ac_CSProductLabels[cS].setAttribute('data-handle', Object.keys(ac_CSProducts)[cS]);
+  ac_CSProductImages[cS].setAttribute('data-handle', Object.keys(ac_CSProducts)[cS]);
+}
+//click action cross sell labels to show/hide the product images and check/uncheck the custom checkboxes
+let csLabels = document.querySelectorAll('.ac_CSProducts label');
+for(let l=0;csLabels[l];l++){
+  csLabels[l].addEventListener('click',function(e){
+    e.stopPropagation();//this function is double-firing for some reason
+    e.preventDefault();//using these to prevent that, which seems to work!
+    //set state to opposite state
+    let csLabelChecked = (csLabels[l].querySelector('input').getAttribute('checked') == 'true') ? 'false' : 'true';
+    csLabels[l].querySelector('input').setAttribute('checked',csLabelChecked);
+    //show/hide associated product image
+    let csImgSelector = csLabels[l].getAttribute('data-handle');
+    let csImgBlock = document.querySelector('li[data-handle="'+csImgSelector+'"]');
+    if(!csImgBlock.classList.contains('ac_CSDisable')) csImgBlock.classList.add('ac_CSDisable');
+    else if(csImgBlock.classList.contains('ac_CSDisable')) csImgBlock.classList.remove('ac_CSDisable');
+    //update the total price based on what's checked
+    priceTally = 0;
+    for(let k=0;csLabels[k];k++){
+      if(csLabels[k].querySelector('input').getAttribute('checked') === 'true'){
+        priceTally += Number(csLabels[k].getAttribute('data-variant-price'));
+      }
+    }
+    document.querySelector('.ac_CSPricing > span:nth-child(2)').innerText = '$'+(Number(priceTally) / 100).toFixed(2);
+  });
+}
+//get the product data for provided crossSell items
+for(let cS in ac_CSProducts){
+  fetch(window.Shopify.routes.root + 'products/'+cS+'.js').then(response => response.json()).then(product => {
+    ac_CSProducts[cS].data = product;
+    let ac_CSProductLabel = document.querySelector('.ac_CSProducts label[data-handle="'+cS+'"]');
+    prdCnt++;
+    if(ac_CSProductLabel){
+      totalPrice += Number(ac_CSProducts[cS].data.price);
+      ac_CSProductLabel.setAttribute('data-variant-price',ac_CSProducts[cS].data.price);
+      ac_CSProductLabel.querySelector('span.ac_CSTitle').innerText = ac_CSProducts[cS].data.title;
+      ac_CSProductLabel.querySelector('.ac_CSProductInfo > span:last-child > span:first-child').innerText = '$'+(Number(ac_CSProducts[cS].data.price) / 100).toFixed(2);
+    }
+    //populate crossSell product image
+    document.querySelector('.ac_CSImages li[data-handle="'+cS+'"]').innerHTML = '<a href="'+ac_CSProducts[cS].data.url+'"><img src="'+ac_CSProducts[cS].data.images[0]+'"></a>';
+    
+    document.querySelector('.ac_CSProducts label[data-handle="'+cS+'"] > input').setAttribute('data-variant-id',ac_CSProducts[cS].data.variants[0].id);
+    
+    if(prdCnt==Object.keys(ac_CSProducts).length) ac_CSInit();
+  }).catch(error => { console.error('An error occurred:', error); });
+}
+const ac_CSInit = () => {
+  //populate total price now that all products have loaded
+  document.querySelector('.ac_CSPricing > span:nth-child(2)').innerText = '$'+(Number(totalPrice) / 100).toFixed(2);
+  //setup click listener for addtocart
+  document.querySelector('.ac_CSCTA > button').addEventListener('click',function(e){
+    e.stopPropagation();//this function is double-firing for some reason
+    e.preventDefault();//using these to prevent that, which seems to work!
+    formData = { 'items': [] };
+    for(let ui=0;ac_CSProductLabels[ui];ui++){
+      let crossSellChk = ac_CSProductLabels[ui].querySelector('input');
+      if(crossSellChk.getAttribute('checked') === 'true') formData.items.push({'id':crossSellChk.getAttribute('data-variant-id'),'quantity':1});
+    }
+    ac_CSdoAddToCart(formData);
+  });
+};
+
+
+
+  
+</script>
