@@ -63,7 +63,7 @@ custom-upsell-product.loading .custom-upsell-products-control {
     <div class="custom-upsell-products-item">
       <a href="{{ product.url }}" target="_blank">
         <img
-          src="{{ product | img_url: '200x' }}"
+          src="{{ product | image_url: '200x' }}"
           alt="{{ product.title | escape }}"
           width="200"
           height="{{ 200 | divided_by: product.featured_image.aspect_ratio | round }}"
@@ -76,7 +76,6 @@ custom-upsell-product.loading .custom-upsell-products-control {
       <div class="custom-upsell-products-control">
         <button
           class="custom-upsell-products-decrease"
-          aria-label="{{ 'cart.label.decrease' | t | escape }}"
           data-decrease
           {% if quantity <= min %}disabled{% endif %}
         >&minus;</button>
@@ -85,13 +84,11 @@ custom-upsell-product.loading .custom-upsell-products-control {
           type="text"
           size="2"
           value="{{ quantity }}"
-          aria-label="{{ 'cart.general.quantity' | t | escape }}"
           data-quantity
           readonly
         />
         <button
           class="custom-upsell-products-increase"
-          aria-label="{{ 'cart.label.increase' | t | escape }}"
           data-increase
           {% if quantity >= max %}disabled{% endif %}
         >&plus;</button>
