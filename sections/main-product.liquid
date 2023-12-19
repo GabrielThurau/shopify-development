@@ -49,6 +49,8 @@
 
   {% render 'selling-plan-generator', product: product %}
 
+    <script src="{{ 'upsell.js' | asset_url }}" defer="defer"></script>
+
   {% render 'custom-upsell-product', product: product %}
 
   {% render 'low-stock', product: product %}
