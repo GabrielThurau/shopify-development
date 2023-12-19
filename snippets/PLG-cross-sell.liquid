@@ -261,7 +261,11 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
             <input type="checkbox" id="ac_CSP{{ forloop.index }}" checked="true">
             <span class="ac_CSChk"></span>
             <span class="ac_CSProductInfo">
-              <span><span class="ac_CSMain">This Item: </span><span class="ac_CSTitle">{{ product.title }}</span></span>
+            {% if forloop.index == 1 %}
+         <span><span class="ac_CSMain">This Item: </span><span class="ac_CSTitle">{{ product.title }}</span></span>
+            {% else %}
+            <span><span class="ac_CSMain"></span><span class="ac_CSTitle">{{ upsell.title }}</span></span>
+              {% endif %}
               <span><span></span></span>
             </span>
           </label>
