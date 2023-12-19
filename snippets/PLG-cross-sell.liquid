@@ -233,7 +233,9 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
 
 {% if product.metafields.custom.upsells.value != blank %}
 
-
+{% for image in product.images %}
+  <a href="#" id="link{{ forloop.index }}">Link {{ forloop.index }}</a>
+{% endfor %}
 
 <div class="ac_CS">
   <div>
@@ -253,7 +255,8 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
     </div>
     <div class="ac_CSProducts">
       <ul>
-        <li>
+      {% for upsell in product.metafields.custom.upsells.value limit:4  %}
+       <li>
           <label class="ac_CSProduct" for="ac_CSP1">
             <input type="checkbox" id="ac_CSP1" checked="true">
             <span class="ac_CSChk"></span>
@@ -263,6 +266,7 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
             </span>
           </label>
         </li>
+        {% endfor %}
         <li>
           <label class="ac_CSProduct" for="ac_CSP2">
             <input type="checkbox" id="ac_CSP2" checked="true">
