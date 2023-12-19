@@ -231,10 +231,6 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
 
 {% if product.metafields.custom.upsells.value != blank %}
 
-<h2>This has an upsell metafield attached to it!</h2>
-
-{% endif %}
-
 <div class="ac_CS">
   <div>
     <h3>COMPLETE THE LOOK</h3>
@@ -295,6 +291,8 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
     </div>
   </div>
 </div>
+
+{% endif %}
 
 
 <script>
