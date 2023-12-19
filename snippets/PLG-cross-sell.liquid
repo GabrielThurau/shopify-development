@@ -1,3 +1,203 @@
+
+<style>
+
+
+.ac_CS {
+  position:relative;
+  overflow:visible;
+  margin-top:20px;
+  display:none;
+}
+.ac_CS > div > h3 {
+  color: #1C1B1B;
+  font-family: Open Sans Condensed;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  margin-bottom:20px;
+}
+.ac_CSImages > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display:flex;
+  flex-direction:row;
+  align-items: flex-start;
+  gap:5%;
+}
+.ac_CSImages > ul > li {
+  border: 2px solid #F1E7DD;
+  padding-inline-start: 0;
+  position:relative;
+  flex: 0 0 21%;
+}
+.ac_CSImages > ul > li > img {
+  width:100%;
+}
+.ac_CSImages > ul > li:before {
+  content: "+";
+  position: absolute;
+  left: -21%;
+  top: calc(50% - 7px);
+  width: 13%;
+  height: 10px;
+  font-family: Open Sans Regular;
+  font-size:3.5897435897435894vw;
+  font-weight:700;
+  line-height: .4;
+}
+.ac_CSImages > ul > li:first-child:before,
+.ac_CSImages > ul > li:first-child.ac_CSDisable + li:before,
+.ac_CSImages > ul > li:first-child.ac_CSDisable + li:nth-child(2).ac_CSDisable + li:before,
+.ac_CSImages > ul > li:first-child.ac_CSDisable + li:nth-child(2).ac_CSDisable + li:nth-child(3).ac_CSDisable + li:before {
+  display: none;
+}
+.ac_CSPricing {
+  margin:13px 0;
+}
+.ac_CSPricing > span {
+  font-family: Open Sans Condensed;
+  font-style: normal;
+  line-height: 1;
+}
+.ac_CSPricing > span:first-child {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+.ac_CSPricing > span:nth-child(2) {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+.ac_CSCTA {
+  position:relative;
+  margin-bottom:20px;
+}
+.ac_CSCTA > button {
+  padding: 12px 55px;
+  text-align:center;
+  border-radius: 3px;
+  background: #000;
+  color: #FFF;
+  font-family: Open Sans Condensed;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.ac_CSProducts > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position:relative;
+}
+.ac_CSProducts > ul > li {
+  position:relative;
+  padding-inline-start: 0;
+  margin-bottom:20px;
+}
+.ac_CSProduct input {
+  display:none;
+  margin-left: 0;
+}
+.ac_CSProduct .ac_CSChk {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  margin-left: 0px;
+}
+.ac_CSProduct .ac_CSChk:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid white;
+}
+.ac_CSProduct input[checked="true"] ~ .ac_CSChk:after {
+  display: block;
+  content: "\2713";
+  position: absolute;
+  top: -5px;
+  left: 2px;
+  border: none;
+}
+.ac_CSProductInfo {
+  margin-left:26px;
+  width: calc(100% - 26px);
+  display:flex;
+}
+.ac_CSProductInfo > span {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1;
+  text-transform: capitalize;
+}
+.ac_CSProductInfo > span:first-child {
+  flex: 1 0 75%;
+  font-family: Open Sans Condensed Medium;
+  font-weight: 400;
+}
+.ac_CSMain {
+  font-family: Open Sans Condensed;
+}
+.ac_CSProductInfo > span:last-child {
+  flex: 1 0 25%;
+  text-align:right;
+  font-family: Mulish;
+  font-family: Open Sans, sans-serif;
+  font-weight: 600;
+}
+.ac_CSDisable {
+  display:none;
+}
+@media screen and (min-width:425px){
+  .ac_CSProduct input[checked="true"] ~ .ac_CSChk:after {
+    top: -4px;
+    left: 2px;
+  }
+}
+@media screen and (min-width:500px){
+  .ac_CSImages > ul > li:before {
+    font-size:1.4000000000000001vw;
+    left: -17%;
+  }
+  .ac_CSProduct input[checked="true"] ~ .ac_CSChk:after {
+    top: -7px;
+    left: 1px;
+  }
+}
+@media screen and (min-width:1000px){
+  .ac_CSImages > ul > li:before {
+    left: -21%;
+  }
+}
+@media screen and (min-width:1375px){
+  .ac_CSImages > ul > li:before {
+    font-size:14px;
+  }
+}
+
+  
+</style>
+
+
 <div class="ac_CS">
   <div>
     <h3>Frequently Bought Together</h3>
