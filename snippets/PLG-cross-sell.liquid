@@ -223,6 +223,8 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
   
 </style>
 
+{% assign product_limit = 3 %}
+
 <!-- {% for product in upsell_products %}
 
 <p class="product-title">{{ product.title }}</p>
@@ -231,15 +233,16 @@ for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac
 
 {% if product.metafields.custom.upsells.value != blank %}
 
+
+
 <div class="ac_CS">
   <div>
     <h3>COMPLETE THE LOOK</h3>
     <div class="ac_CSImages">
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        {% for upsell in product.custom.upsells.value limit: 4  %}
+        <li>{ upsell.featured_img}}</li>
+        {% endfor %}
       </ul>
     </div>
     <div class="ac_CSPricing">
