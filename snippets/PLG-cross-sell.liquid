@@ -13,11 +13,11 @@ Begin Acadia - BT8
 
 <script>
 //build crossSell product data object from product metadata
-let ac_CSProducts = { '{{ product.handle }}':{data:{}} };//initialize crossSell product list with "this" product
+let upsellProducts = { '{{ product.handle }}':{data:{}} };//initialize crossSell product list with "this" product
 let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}'; ac_CSList = ac_CSList.split('|');
 //populate product list (currently limited to four total upsell products)
-for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac_CSProducts[ac_CSList[pr]]['data'] = {}; }
-console.log(ac_CSProducts);
+for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ upsellProducts[ac_CSList[pr]] = {}; upsellProducts[ac_CSList[pr]]['data'] = {}; }
+console.log(upsellProducts);
 </script>
 
 
@@ -115,13 +115,13 @@ console.log(ac_CSProducts);
   line-height: 1;
   text-transform: uppercase;
 }
-.ac_CSProducts > ul {
+.upsellProducts > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   position:relative;
 }
-.ac_CSProducts > ul > li {
+.upsellProducts > ul > li {
   position:relative;
   padding-inline-start: 0;
   margin-bottom:20px;
@@ -239,7 +239,7 @@ console.log(ac_CSProducts);
     <div class="ac_CSCTA">
       <button>Add to Cart</button>
     </div>
-    <div class="ac_CSProducts">
+    <div class="upsellProducts">
       <ul>
       {% for upsell in product.metafields.custom.upsells.value limit:4  %}
        <li>
@@ -285,11 +285,11 @@ console.log(ac_CSProducts);
 // };
 // for(let cS=0;ac_CSProductLabels[cS];cS++){
 //   //set product handles in crossSell DOM elements
-//   ac_CSProductLabels[cS].setAttribute('data-handle', Object.keys(ac_CSProducts)[cS]);
-//   ac_CSProductImages[cS].setAttribute('data-handle', Object.keys(ac_CSProducts)[cS]);
+//   ac_CSProductLabels[cS].setAttribute('data-handle', Object.keys(upsellProducts)[cS]);
+//   ac_CSProductImages[cS].setAttribute('data-handle', Object.keys(upsellProducts)[cS]);
 // }
 // //click action cross sell labels to show/hide the product images and check/uncheck the custom checkboxes
-// let csLabels = document.querySelectorAll('.ac_CSProducts label');
+// let csLabels = document.querySelectorAll('.upsellProducts label');
 // for(let l=0;csLabels[l];l++){
 //   csLabels[l].addEventListener('click',function(e){
 //     e.stopPropagation();//this function is double-firing for some reason
@@ -313,23 +313,23 @@ console.log(ac_CSProducts);
 //   });
 // }
 // //get the product data for provided crossSell items
-// for(let cS in ac_CSProducts){
+// for(let cS in upsellProducts){
 //   fetch(window.Shopify.routes.root + 'products/'+cS+'.js').then(response => response.json()).then(product => {
-//     ac_CSProducts[cS].data = product;
-//     let ac_CSProductLabel = document.querySelector('.ac_CSProducts label[data-handle="'+cS+'"]');
+//     upsellProducts[cS].data = product;
+//     let ac_CSProductLabel = document.querySelector('.upsellProducts label[data-handle="'+cS+'"]');
 //     prdCnt++;
 //     if(ac_CSProductLabel){
-//       totalPrice += Number(ac_CSProducts[cS].data.price);
-//       ac_CSProductLabel.setAttribute('data-variant-price',ac_CSProducts[cS].data.price);
-//       ac_CSProductLabel.querySelector('span.ac_CSTitle').innerText = ac_CSProducts[cS].data.title;
-//       ac_CSProductLabel.querySelector('.ac_CSProductInfo > span:last-child > span:first-child').innerText = '$'+(Number(ac_CSProducts[cS].data.price) / 100).toFixed(2);
+//       totalPrice += Number(upsellProducts[cS].data.price);
+//       ac_CSProductLabel.setAttribute('data-variant-price',upsellProducts[cS].data.price);
+//       ac_CSProductLabel.querySelector('span.ac_CSTitle').innerText = upsellProducts[cS].data.title;
+//       ac_CSProductLabel.querySelector('.ac_CSProductInfo > span:last-child > span:first-child').innerText = '$'+(Number(upsellProducts[cS].data.price) / 100).toFixed(2);
 //     }
 //     //populate crossSell product image
-//     document.querySelector('.ac_CSImages li[data-handle="'+cS+'"]').innerHTML = '<a href="'+ac_CSProducts[cS].data.url+'"><img src="'+ac_CSProducts[cS].data.images[0]+'"></a>';
+//     document.querySelector('.ac_CSImages li[data-handle="'+cS+'"]').innerHTML = '<a href="'+upsellProducts[cS].data.url+'"><img src="'+upsellProducts[cS].data.images[0]+'"></a>';
     
-//     document.querySelector('.ac_CSProducts label[data-handle="'+cS+'"] > input').setAttribute('data-variant-id',ac_CSProducts[cS].data.variants[0].id);
+//     document.querySelector('.upsellProducts label[data-handle="'+cS+'"] > input').setAttribute('data-variant-id',upsellProducts[cS].data.variants[0].id);
     
-//     if(prdCnt==Object.keys(ac_CSProducts).length) ac_CSInit();
+//     if(prdCnt==Object.keys(upsellProducts).length) ac_CSInit();
 //   }).catch(error => { console.error('An error occurred:', error); });
 // }
 // const ac_CSInit = () => {
