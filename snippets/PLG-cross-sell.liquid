@@ -17,13 +17,14 @@ let upsellProducts = {
 	'{{ product.handle }}': {
 		data: {}
 	}
-}; //initialize crossSell product list with "this" product
+};
+console.log(upsellProducts);
 let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}';
 ac_CSList = ac_CSList.split('|');
 
-for (let pr = 0; ac_CSList[pr] && pr <= 4; pr++) {
-	upsellProducts[ac_CSList[pr]] = {};
-	upsellProducts[ac_CSList[pr]]['data'] = {};
+for (let product = 0; ac_CSList[product] && product <= 4; product++) {
+	upsellProducts[ac_CSList[product]] = {};
+	upsellProducts[ac_CSList[product]]['data'] = {};
 }
 console.log(upsellProducts);
 </script>
