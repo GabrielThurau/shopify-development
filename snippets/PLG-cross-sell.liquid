@@ -1,38 +1,4 @@
-
-{% comment %}
-
-Refactor to use metaobjects instead of fields
-
-
-Begin Acadia - BT8
-1. Any product to show the product cross sell block should add the tag "enableCrossSell"
-2. Add other featured product page handles to the product's "Product Cross Sells" metadata field
-   example format: tapioca-pearls|logo-shaker|boba-tumbler-cmt
-
-{% endcomment %}
-
-<script>
-//build crossSell product data object from product metadata
-let upsellProducts = {
-	'{{ product.handle }}': {
-		data: {}
-	}
-};
-console.table(upsellProducts);
-let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}';
-ac_CSList = ac_CSList.split('|');
-
-console.log(ac_CSList);
-
-
-</script>
-
-
-
-
-
 <style>
-
 
 .ac_CS {
   position:relative;
@@ -227,6 +193,55 @@ console.log(ac_CSList);
 
   
 </style>
+
+
+
+
+
+
+
+{% comment %}
+
+Refactor to use metaobjects instead of fields
+
+
+Begin Acadia - BT8
+1. Any product to show the product cross sell block should add the tag "enableCrossSell"
+2. Add other featured product page handles to the product's "Product Cross Sells" metadata field
+   example format: tapioca-pearls|logo-shaker|boba-tumbler-cmt
+
+{% endcomment %}
+
+<script>
+
+// for outputting data object
+
+{% assign product_handle = section.settings.product_handle %}
+{% assign upsell = all_products[product_handle] %}
+
+const variantIDs = [];
+const productArray = [];
+
+{% for variant in product.variants %} 
+variantIDs.push({{ variant.id }});
+productObject = {
+  "title": '{{variant.title}}',
+  "id": {{variant.id}}
+}
+productArray.push(productObject)
+{% endfor %}
+
+
+// for outputting data object
+
+
+</script>
+
+
+
+
+
+
 
 {% if product.metafields.custom.upsells.value != blank %}
 
