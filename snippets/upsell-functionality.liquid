@@ -160,27 +160,7 @@ $('button#add-to-cart-button').on('click', function() {
     // array of Promises
 }
 
-// for outputting data object
 
-{% assign product_handle = section.settings.product_handle %}
-{% assign product = all_products[product_handle] %}
-
-let productObject;
-
-const variantIDs = [];
-const productArray = [];
-
-{% for variant in product.variants %} 
-variantIDs.push({{ variant.id }});
-productObject = {
-  "title": '{{variant.title}}',
-  "id": {{variant.id}}
-}
-productArray.push(productObject)
-{% endfor %}
-
-
-// for outputting data object
 
 
 (function () {
