@@ -287,7 +287,6 @@ var button = document.querySelector(".submit-button-custom span.add-to-cart-cust
 
 button.addEventListener("click", function() {
 let getVariant = document.querySelector('.product-sticky-add-cart-new input[name="id"]').value;
-console.log("Get Data Here: " + getVariant)
 let requestBody = {
   'items': [{
     'id': getVariant,
