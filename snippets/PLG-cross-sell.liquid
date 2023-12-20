@@ -201,11 +201,7 @@
 
 const emptyArray = [];
 
-{% for upsell in product.metafields.custom.upsells.value limit:4  %}
 
-emptyArray.push[{{upsell.title}}]
-
-{% endfor %}
 
 console.log(emptyArray)
 
