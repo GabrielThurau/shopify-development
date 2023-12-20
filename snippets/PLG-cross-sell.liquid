@@ -20,13 +20,7 @@ let upsellProducts = {
 };
 console.log(upsellProducts);
 let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}';
-ac_CSList = ac_CSList.split('|');
 
-for (let product = 0; ac_CSList[product] && product <= 4; product++) {
-    debugger;
-	upsellProducts[ac_CSList[product]] = {};
-	upsellProducts[ac_CSList[product]]['data'] = {};
-}
 </script>
 
 
