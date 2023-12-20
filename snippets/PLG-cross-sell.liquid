@@ -200,7 +200,7 @@
 // for outputting data object
      const productInventory = [
         {%- for u in product.metafields.custom.upsells.value %}
-          { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
+          { title: '{{ u.title }}', id: '{{ u.id }}', quantity: '{{ u.inventory_quantity }}' },
         {%- endfor %}
       ];
 
