@@ -208,8 +208,6 @@ let jsonArray = [];
 
 // jsonArray.push[{{upsell.title}}]
 
-console.log({{upsell}})
-
 {% endfor %}
 
 
@@ -240,6 +238,14 @@ productArray.push(productObject)
 
 
 {% if product.metafields.custom.upsells.value != blank %}
+
+  {% for upsell in product.metafields.custom.upsells.value limit:4  %}
+
+  <h2>{{ upsell.title }}</h2>
+
+// jsonArray.push[{{upsell.title}}]
+
+{% endfor %}
 
 <div class="ac_CS">
   <div>
