@@ -273,11 +273,11 @@ const ac_CSdoAddToCart = function(data){
 };
 for(let cS=0;ac_CSProductLabels[cS];cS++){
   //set product handles in crossSell DOM elements
-  ac_CSProductLabels[cS].setAttribute('data-handle', Object.keys(upsellProducts)[cS]);
-  ac_CSProductImages[cS].setAttribute('data-handle', Object.keys(upsellProducts)[cS]);
+  ac_CSProductLabels[cS].setAttribute('data-handle', Object.keys(ac_CSProducts)[cS]);
+  ac_CSProductImages[cS].setAttribute('data-handle', Object.keys(ac_CSProducts)[cS]);
 }
 //click action cross sell labels to show/hide the product images and check/uncheck the custom checkboxes
-let csLabels = document.querySelectorAll('.upsellProducts label');
+let csLabels = document.querySelectorAll('.ac_CSProducts label');
 for(let l=0;csLabels[l];l++){
   csLabels[l].addEventListener('click',function(e){
     e.stopPropagation();//this function is double-firing for some reason
@@ -301,23 +301,23 @@ for(let l=0;csLabels[l];l++){
   });
 }
 //get the product data for provided crossSell items
-for(let cS in upsellProducts){
+for(let cS in ac_CSProducts){
   fetch(window.Shopify.routes.root + 'products/'+cS+'.js').then(response => response.json()).then(product => {
-    upsellProducts[cS].data = product;
-    let ac_CSProductLabel = document.querySelector('.upsellProducts label[data-handle="'+cS+'"]');
+    ac_CSProducts[cS].data = product;
+    let ac_CSProductLabel = document.querySelector('.ac_CSProducts label[data-handle="'+cS+'"]');
     prdCnt++;
     if(ac_CSProductLabel){
-      totalPrice += Number(upsellProducts[cS].data.price);
-      ac_CSProductLabel.setAttribute('data-variant-price',upsellProducts[cS].data.price);
-      ac_CSProductLabel.querySelector('span.ac_CSTitle').innerText = upsellProducts[cS].data.title;
-      ac_CSProductLabel.querySelector('.ac_CSProductInfo > span:last-child > span:first-child').innerText = '$'+(Number(upsellProducts[cS].data.price) / 100).toFixed(2);
+      totalPrice += Number(ac_CSProducts[cS].data.price);
+      ac_CSProductLabel.setAttribute('data-variant-price',ac_CSProducts[cS].data.price);
+      ac_CSProductLabel.querySelector('span.ac_CSTitle').innerText = ac_CSProducts[cS].data.title;
+      ac_CSProductLabel.querySelector('.ac_CSProductInfo > span:last-child > span:first-child').innerText = '$'+(Number(ac_CSProducts[cS].data.price) / 100).toFixed(2);
     }
     //populate crossSell product image
-    document.querySelector('.ac_CSImages li[data-handle="'+cS+'"]').innerHTML = '<a href="'+upsellProducts[cS].data.url+'"><img src="'+upsellProducts[cS].data.images[0]+'"></a>';
+    document.querySelector('.ac_CSImages li[data-handle="'+cS+'"]').innerHTML = '<a href="'+ac_CSProducts[cS].data.url+'"><img src="'+ac_CSProducts[cS].data.images[0]+'"></a>';
     
-    document.querySelector('.upsellProducts label[data-handle="'+cS+'"] > input').setAttribute('data-variant-id',upsellProducts[cS].data.variants[0].id);
+    document.querySelector('.ac_CSProducts label[data-handle="'+cS+'"] > input').setAttribute('data-variant-id',ac_CSProducts[cS].data.variants[0].id);
     
-    if(prdCnt==Object.keys(upsellProducts).length) ac_CSInit();
+    if(prdCnt==Object.keys(ac_CSProducts).length) ac_CSInit();
   }).catch(error => { console.error('An error occurred:', error); });
 }
 const ac_CSInit = () => {
