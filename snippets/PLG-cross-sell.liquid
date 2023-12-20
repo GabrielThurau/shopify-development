@@ -254,6 +254,10 @@
 
    let images = document.querySelectorAll('.image-container > img'); 
 
+  const endpoint = window.Shopify.routes.root + 'products/{{ value.handle }}?section_id={{ section.id }}';
+
+  console.log(endpoint)
+
   for (const [prop, value] of Object.entries(productData)) {
     
    fetch(window.Shopify.routes.root + 'products/{{ value.handle }}?section_id={{ section.id }}')
