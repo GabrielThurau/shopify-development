@@ -196,7 +196,7 @@
 {% if product.metafields.custom.upsells.value != blank %}
 
 <div class="ac_CS">
-  <div class="quick-view-modal"></div>
+  <div class="quick-view-modal"><img src=""></div>
   <div>
     <h3>COMPLETE THE LOOK</h3>
     <div class="ac_CSImages">
@@ -254,7 +254,7 @@
 
 
 // empty modal div, which will populate on click
-let modal = document.querySelector('.quick-view-modal'); 
+let modal = document.querySelector('.quick-view-modal > img'); 
 
   fetch('https://9b69a1.myshopify.com/products/dummy-product-2?section_id={{ section.id }}')
   .then(response => response.text())
@@ -263,7 +263,7 @@ let modal = document.querySelector('.quick-view-modal');
     const doc = parser.parseFromString(html, 'text/html');
     const variantImage = doc.querySelector('modal-opener > div > img');
     console.log(variantImage)
-    modal.innerHTML = variantImage.innerHTML;
+    modal.src = variantImage.src;
   })
   .catch(error => {
     console.error('Error:', error);
