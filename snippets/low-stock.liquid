@@ -42,6 +42,8 @@
           { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
         {%- endfor %}
       ];
+
+    console.log(productInventory)
     
       const restock = { restock: true };
     const sufficient = { restock: false };
