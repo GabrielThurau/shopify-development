@@ -196,6 +196,7 @@
 {% if product.metafields.custom.upsells.value != blank %}
 
 <div class="ac_CS">
+  <div class="quick-view-modal"></div>
   <div>
     <h3>COMPLETE THE LOOK</h3>
     <div class="ac_CSImages">
@@ -242,12 +243,23 @@
 // for outputting data object
      const productInventory = [
         {%- for u in product.metafields.custom.upsells.value %}
-          { title: '{{ u.title }}', id: '{{ u.id }}', available: '{{ u.available }}' },
+          { title: '{{ u.title }}', id: '{{ u.id }}', handle: '{{u.handle}}', available: '{{ u.available }}' },
         {%- endfor %}
       ];
     console.log(productInventory)
 // for outputting data object
 
+
+
+// empty modal div, which will populate on click
+let modal = document.querySelector('.quick-view-modal'); 
+
+// need to add /products/product-handle?section_id=section-id-name
+fetch('/products/jason-robertson-rookie-card?section_id=MainProduct-template--21362846269715__main')
+
+// then-ing the text output and turning it into markup that will populate empty div
+.then(response => response.text())
+.then(data => modal.innerHTML = data);
 
   
   
