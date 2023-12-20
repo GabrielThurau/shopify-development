@@ -17,7 +17,7 @@ let ac_CSProducts = { '{{ product.handle }}':{data:{}} };//initialize crossSell 
 let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}'; ac_CSList = ac_CSList.split('|');
 //populate product list (currently limited to four total upsell products)
 for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ ac_CSProducts[ac_CSList[pr]] = {}; ac_CSProducts[ac_CSList[pr]]['data'] = {}; }
-  //console.log(ac_CSProducts);
+console.log(ac_CSProducts);
 </script>
 
 
