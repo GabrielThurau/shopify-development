@@ -199,7 +199,7 @@
 
 // for outputting data object
      const productInventory = [
-        {%- for v in product.variants %}
+        {%- for u in product.metafields.custom.upsells.value %}
           { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
         {%- endfor %}
       ];
