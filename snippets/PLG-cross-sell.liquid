@@ -202,14 +202,15 @@
 
 // for outputting data object
 
-let jsonArray = [];
+const emptyArray = [];
 
 {% for upsell in product.metafields.custom.upsells.value limit:4  %}
 
-// jsonArray.push[{{upsell.title}}]
+emptyArray.push[{{upsell.title}}]
 
 {% endfor %}
 
+console.log(emptyArray)
 
 const variantIDs = [];
 const productArray = [];
@@ -238,14 +239,6 @@ productArray.push(productObject)
 
 
 {% if product.metafields.custom.upsells.value != blank %}
-
-  {% for upsell in product.metafields.custom.upsells.value limit:4  %}
-
-  <h2>{{ upsell.title }}</h2>
-
-// jsonArray.push[{{upsell.title}}]
-
-{% endfor %}
 
 <div class="ac_CS">
   <div>
