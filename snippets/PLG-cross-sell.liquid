@@ -252,7 +252,7 @@
     console.log(productData)
 // for outputting data object
 
-const endpoint = `window.Shopify.routes.root +'/products/{{ prop.handle }}?section_id={{ section.id }}`;
+const endpoint = window.Shopify.routes.root +'/products/{{ prop.handle }}?section_id={{ section.id }}';
 
 console.log(endpoint)
 
