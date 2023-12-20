@@ -244,13 +244,16 @@
 <script>
 
 // for outputting data object
-     const productInventory = [
+     const productData = [
         {%- for u in product.metafields.custom.upsells.value %}
           { title: '{{ u.title }}', id: '{{ u.id }}', handle: '{{u.handle}}', available: '{{ u.available }}' },
         {%- endfor %}
       ];
-    console.log(productInventory)
+    console.log(productData)
 // for outputting data object
+
+
+productData.map((product) => console.log(product));
 
 
 // set up Promise.all for image fetch requests
