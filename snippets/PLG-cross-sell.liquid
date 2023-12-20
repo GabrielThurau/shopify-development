@@ -206,7 +206,9 @@ let jsonArray = [];
 
 {% for upsell in product.metafields.custom.upsells.value limit:4  %}
 
-jsonArray.push[{{upsell.title}}]
+// jsonArray.push[{{upsell.title}}]
+
+console.log({{upsell}})
 
 {% endfor %}
 
