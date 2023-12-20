@@ -262,6 +262,7 @@
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const variantImage = doc.querySelector('modal-opener > div > img');
+    console.log(variantImage);
     images[prop].src = variantImage.src;
   })
   .catch(error => {
