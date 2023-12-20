@@ -13,10 +13,18 @@ Begin Acadia - BT8
 
 <script>
 //build crossSell product data object from product metadata
-let upsellProducts = { '{{ product.handle }}':{data:{}} };//initialize crossSell product list with "this" product
-let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}'; ac_CSList = ac_CSList.split('|');
-//populate product list (currently limited to four total upsell products)
-for(let pr=0;ac_CSList[pr] && pr<=4;pr++){ upsellProducts[ac_CSList[pr]] = {}; upsellProducts[ac_CSList[pr]]['data'] = {}; }
+let upsellProducts = {
+	'{{ product.handle }}': {
+		data: {}
+	}
+}; //initialize crossSell product list with "this" product
+let ac_CSList = '{{ product.metafields.custom.product_cross_sells }}';
+ac_CSList = ac_CSList.split('|');
+
+for (let pr = 0; ac_CSList[pr] && pr <= 4; pr++) {
+	upsellProducts[ac_CSList[pr]] = {};
+	upsellProducts[ac_CSList[pr]]['data'] = {};
+}
 console.log(upsellProducts);
 </script>
 
