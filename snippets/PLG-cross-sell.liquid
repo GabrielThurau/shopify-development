@@ -195,8 +195,6 @@
 
 {% if product.metafields.custom.upsells.value != blank %}
 
-<h2>{{ section.id }}</h2>
-
 <div class="ac_CS">
   <div class="quick-view-modal"></div>
   <div>
@@ -252,6 +250,8 @@
 // for outputting data object
 
 
+// set up Promise.all for image fetch requests
+
 
 // empty modal div, which will populate on click
 let modal = document.querySelector('.quick-view-modal'); 
@@ -261,11 +261,12 @@ fetch('https://9b69a1.myshopify.com/products/dummy-product-2?section_id={{ secti
 
 // then-ing the text output and turning it into markup that will populate empty div
 .then(response => response.text())
-.then(data => modal.innerHTML = data);
+.then(data => console.log(data));
+
 
 //.then(data => modal.innerHTML = data);
 
-// set up Promise.all for image fetch requests
+
 
 
   
