@@ -257,7 +257,7 @@
 let modal = document.querySelector('.quick-view-modal'); 
 
 // need to add /products/product-handle?section_id=section-id-name
-fetch('https://9b69a1.myshopify.com/products/dummy-product-2?section_id=template--{{ section.id }}__main')
+fetch('https://9b69a1.myshopify.com/products/dummy-product-2?section_id={{ section.id }}')
 
 // then-ing the text output and turning it into markup that will populate empty div
 .then(response => response.text())
