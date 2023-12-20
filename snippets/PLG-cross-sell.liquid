@@ -198,13 +198,14 @@
 <script>
 
 // for outputting data object
+     const productInventory = [
+        {%- for v in product.variants %}
+          { title: '{{ v.title }}', id: '{{ v.id }}', quantity: '{{ v.inventory_quantity }}' },
+        {%- endfor %}
+      ];
 
-const emptyArray = [];
-
-
-
-console.log(emptyArray)
-
+    console.log(productInventory)
+    
 
 
 // for outputting data object
