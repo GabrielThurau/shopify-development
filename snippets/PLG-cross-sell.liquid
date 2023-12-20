@@ -212,19 +212,6 @@ emptyArray.push[{{upsell.title}}]
 
 console.log(emptyArray)
 
-const variantIDs = [];
-const productArray = [];
-
-let productObject; 
-
-{% for variant in product.variants %} 
-variantIDs.push({{ variant.id }});
-productObject = {
-  "title": '{{variant.title}}',
-  "id": {{variant.id}}
-}
-productArray.push(productObject)
-{% endfor %}
 
 
 // for outputting data object
