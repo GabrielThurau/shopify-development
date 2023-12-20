@@ -262,6 +262,7 @@ let modal = document.querySelector('.quick-view-modal');
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const variantImage = doc.querySelector('modal-opener > div > img');
+    console.log(variantImage)
     modal.innerHTML = variantImage.innerHTML;
   })
   .catch(error => {
