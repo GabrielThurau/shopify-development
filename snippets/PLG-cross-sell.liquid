@@ -196,10 +196,10 @@
 {% if product.metafields.custom.upsells.value != blank %}
 
 <div class="ac_CS">
-   <div class="quick-view-modal"><img src=""></div>
-   <div class="quick-view-modal"><img src=""></div>
-   <div class="quick-view-modal"><img src=""></div>
-   <div class="quick-view-modal"><img src=""></div>
+   <div class="image-container"><img src=""></div>
+   <div class="image-container"><img src=""></div>
+   <div class="image-container"><img src=""></div>
+   <div class="image-container"><img src=""></div>
   <div>
     <h3>COMPLETE THE LOOK</h3>
     <div class="ac_CSImages">
@@ -257,7 +257,7 @@
 
 
   // empty modal div, which will populate on click
-  let image = document.querySelector('.quick-view-modal > img'); 
+  let images = document.querySelectorAll('.image-container > img'); 
 
   fetch(window.Shopify.routes.root +'/products/{{ u.handle }}?section_id={{ section.id }}')
   .then(response => response.text())
