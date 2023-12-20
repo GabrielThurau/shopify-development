@@ -193,20 +193,6 @@
   
 </style>
 
-<script>
-
-// for outputting data object
-     const productInventory = [
-        {%- for u in product.metafields.custom.upsells.value %}
-          { title: '{{ u.title }}', id: '{{ u.id }}', available: '{{ u.available }}' },
-        {%- endfor %}
-      ];
-    console.log(productInventory)
-// for outputting data object
-
-</script>
-
-
 {% if product.metafields.custom.upsells.value != blank %}
 
 <div class="ac_CS">
@@ -253,9 +239,13 @@
 
 <script>
 
-
-
-
-
+// for outputting data object
+     const productInventory = [
+        {%- for u in product.metafields.custom.upsells.value %}
+          { title: '{{ u.title }}', id: '{{ u.id }}', available: '{{ u.available }}' },
+        {%- endfor %}
+      ];
+    console.log(productInventory)
+// for outputting data object
   
 </script>
