@@ -253,15 +253,9 @@
 // for outputting data object
 
    let images = document.querySelectorAll('.image-container > img'); 
-
-
-
-  for (const [prop, value] of Object.entries(productData)) {
-
-  const endpoint = `${location.origin}/products/${value.handle}?section_id={{section.id}}`;
-
-   console.log(endpoint)
-   fetch(`${location.origin}/products/${value.handle}?section_id={{section.id}}`)
+   for (const [prop, value] of Object.entries(productData)) {
+   const endpoint = `${location.origin}/products/${value.handle}?section_id={{section.id}}`;
+   fetch(endpoint)
   .then(response => response.text())
   .then(html => {
     const parser = new DOMParser();
