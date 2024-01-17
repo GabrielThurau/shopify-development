@@ -326,7 +326,7 @@
         for (const [prop, value] of Object.entries(productData)) {
            let filteredValues = value.product.variants?.filter((v, i, arr) => v?.title === color)
            console.log(filteredValues)
-           endpoint = `${location.origin}/products/${value.product.handle}?variant=${filteredValues[prop].id}?section_id={{section.id}}`;
+           endpoint = `${location.origin}/products/${value.product.handle}?variant=${filteredValues[prop]?.id}?section_id={{section.id}}`;
         
       
 
