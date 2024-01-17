@@ -333,12 +333,13 @@
           }
 
           if (value.product.variants[prop]?.title === color) {
+          
            dataVariant = value.product.variants[prop].id;
       
           }
 
-               console.log(dataVariant)
-       
+               //console.log(dataVariant)
+         console.log(value.product.variants[prop]?.title)
             console.log(endpoint);
             //console.log(value.product.variants)
             fetch(endpoint)
