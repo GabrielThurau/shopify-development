@@ -318,7 +318,7 @@
      updateUpsells(productData, variant, color) {
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
-       console.log(productData.product.variants)
+       console.log(productData)
         let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
