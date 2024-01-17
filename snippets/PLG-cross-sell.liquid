@@ -315,7 +315,7 @@
        this.updateUpsells(this.productData, this.isVariant, this.variantColor);
      }
 
-     updateUpsells(productData, variant) {
+     updateUpsells(productData, variant, color) {
         let images = document.querySelectorAll('.single_image > img');
         let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
