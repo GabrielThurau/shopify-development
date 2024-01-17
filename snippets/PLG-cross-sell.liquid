@@ -311,40 +311,11 @@
          {% endif %}
          {%- endfor %}
        ];
-       this.renderCorrectly(this.upsellBlocks, this.productData, this.variantColor);
        this.postFunction();
-       // this.updateUpsells(this.productData, this.isVariant);
+       this.updateUpsells(this.productData, this.isVariant, this.variantColor);
      }
 
-    renderCorrectly(upsells, productData, color) {
-      // this is for initially adding all product variant information before any variant updates via Mutation Observer
-
-  
-   
-    productData.forEach( (d, i) => {
-    console.log(d.product.variants)
-      });
-
-
-    }
-
-    postFunction() {
-      
-    }
-
-   
-   // need to swap out with a mutation observer to trigger section render function
-   
-     createObserver() {
-       const observer = new window.IntersectionObserver((entries, observer) => {
-         this.headerBounds = entries[0].intersectionRect;
-         observer.disconnect();
-       });
-   
-       observer.observe(this.header);
-     }
-
-       updateUpsells(productData, variant) {
+     updateUpsells(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
         let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
@@ -371,7 +342,25 @@
                 });
         }
     }
+     
+
+
+    postFunction() {
+      
+    }
+
    
+   // need to swap out with a mutation observer to trigger section render function
+   
+     createObserver() {
+       const observer = new window.IntersectionObserver((entries, observer) => {
+         this.headerBounds = entries[0].intersectionRect;
+         observer.disconnect();
+       });
+   
+       observer.observe(this.header);
+     }
+
    }
    
    window.customElements.define('product-upsell', ProductUpsell);
