@@ -305,7 +305,7 @@
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
-       {%- for u in product.metafields.custom.upsells.value limit:4 | where: "available" %}
+       {%- for u in product.metafields.custom.upsells.value limit:4 %}
         {% if u.available %}
      {product: {{ u | json }}},
          {% endif %}
