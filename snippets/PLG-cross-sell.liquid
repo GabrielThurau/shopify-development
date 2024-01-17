@@ -1,342 +1,453 @@
 <style>
 
-.ac_CS {
-  position:relative;
-  overflow:visible;
-  margin-top:20px;
-}
-.ac_CS > div > h3 {
-  color: #1C1B1B;
-  font-family: Open Sans Condensed;
-  font-size: 21px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 2.1px;
-  text-transform: uppercase;
-  margin-bottom:20px;
-}
-.ac_CSImages > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display:flex;
-  flex-direction:row;
-  align-items: flex-start;
-  gap:5%;
-}
-.ac_CSImages > ul > li {
-  border: 2px solid #F1E7DD;
-  padding-inline-start: 0;
-  position:relative;
-  flex: 0 0 21%;
-}
-.ac_CSImages > ul > li > img {
-  width:100%;
-}
-.ac_CSImages > ul > li:before {
-  content: "+";
-  position: absolute;
-  left: -21%;
-  top: calc(50% - 7px);
-  width: 13%;
-  height: 10px;
-  font-family: Open Sans Regular;
-  font-size:3.5897435897435894vw;
-  font-weight:700;
-  line-height: .4;
-}
-.ac_CSImages > ul > li:first-child:before,
-.ac_CSImages > ul > li:first-child.ac_CSDisable + li:before,
-.ac_CSImages > ul > li:first-child.ac_CSDisable + li:nth-child(2).ac_CSDisable + li:before,
-.ac_CSImages > ul > li:first-child.ac_CSDisable + li:nth-child(2).ac_CSDisable + li:nth-child(3).ac_CSDisable + li:before {
-  /* display: none; */
-}
-.ac_CSPricing {
-  margin:13px 0;
-}
-.ac_CSPricing > span {
-  font-family: Open Sans Condensed;
-  font-style: normal;
-  line-height: 1;
-}
-.ac_CSPricing > span:first-child {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1;
-}
-.ac_CSPricing > span:nth-child(2) {
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1;
-}
-.ac_CSCTA {
-  position:relative;
-  margin-bottom:20px;
-}
-.ac_CSCTA > button {
-  padding: 12px 55px;
-  text-align:center;
-  border-radius: 3px;
-  background: #000;
-  color: #FFF;
-  font-family: Open Sans Condensed;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-}
-.upsellProducts > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position:relative;
-}
-.upsellProducts > ul > li {
-  position:relative;
-  padding-inline-start: 0;
-  margin-bottom:20px;
-}
-.ac_CSProduct input {
-  display:none;
-  margin-left: 0;
-}
-.ac_CSProduct .ac_CSChk {
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  height: 16px;
-  width: 16px;
-  border-radius: 3px;
-  color: #ffffff;
-  background-color: #000000;
-  border: 1px solid #000000;
-  margin-left: 0px;
-}
-.ac_CSProduct .ac_CSChk:after {
-  content: "";
-  position: absolute;
-  display: none;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  border: 1px solid white;
-}
-.ac_CSProduct input[checked="true"] ~ .ac_CSChk:after {
-  display: block;
-  content: "\2713";
-  position: absolute;
-  top: -5px;
-  left: 2px;
-  border: none;
-}
-.ac_CSProductInfo {
-  margin-left:26px;
-  width: calc(100% - 26px);
-  display:flex;
-}
-.ac_CSProductInfo > span {
-  color: #000;
-  font-size: 14px;
-  font-style: normal;
-  line-height: 1;
-  text-transform: capitalize;
-}
-.ac_CSProductInfo > span:first-child {
-  flex: 1 0 75%;
-  font-family: Open Sans Condensed Medium;
-  font-weight: 400;
-}
-.ac_CSMain {
-  font-family: Open Sans Condensed;
-}
-.ac_CSProductInfo > span:last-child {
-  flex: 1 0 25%;
-  text-align:right;
-  font-family: Mulish;
-  font-family: Open Sans, sans-serif;
-  font-weight: 600;
-}
-.ac_CSDisable {
-  display:none;
-}
-@media screen and (min-width:425px){
-  .ac_CSProduct input[checked="true"] ~ .ac_CSChk:after {
-    top: -4px;
-    left: 2px;
-  }
-}
-@media screen and (min-width:500px){
-  .ac_CSImages > ul > li:before {
-    font-size:1.4000000000000001vw;
-    left: -17%;
-  }
-  .ac_CSProduct input[checked="true"] ~ .ac_CSChk:after {
-    top: -7px;
-    left: 1px;
-  }
-}
-@media screen and (min-width:1000px){
-  .ac_CSImages > ul > li:before {
-    left: -21%;
-  }
-}
-@media screen and (min-width:1375px){
-  .ac_CSImages > ul > li:before {
-    font-size:14px;
-  }
-}
-  
-</style>
-
-{% if product.metafields.custom.upsells.value != blank %}
-
-<div class="ac_CS">
-   <div class="image-container"><img src=""></div>
-   <div class="image-container"><img src=""></div>
-   <div class="image-container"><img src=""></div>
-   <div class="image-container"><img src=""></div>
-  <div>
-    <h3>COMPLETE THE LOOK</h3>
-    <div class="ac_CSImages">
-      <ul>
-        {% for upsell in product.metafields.custom.upsells.value limit:4  %}
-        <li><img src="{{upsell.featured_image | image_url }}"></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="ac_CSPricing">
-      <span>Total Price:</span> <span></span> 
-    </div>
-    <div class="ac_CSCTA">
-      <button>Add to Cart</button>
-    </div>
-    <div class="ac_CSProducts">
-      <ul>
-      {% for upsell in product.metafields.custom.upsells.value limit:4  %}
-       <li>
-          <label class="ac_CSProduct" for="ac_CSP{{ forloop.index }}">
-            <input type="checkbox" id="ac_CSP{{ forloop.index }}" checked="true">
-            <span class="ac_CSChk"></span>
-            <span class="ac_CSProductInfo">
-            {% if forloop.index == 1 %}
-         <span><span class="ac_CSMain">This Item: </span><span class="ac_CSTitle">{{ product.title }}</span></span>
-            {% else %}
-            <span><span class="ac_CSMain"></span><span class="ac_CSTitle">{{ upsell.title }}</span></span>
-              {% endif %}
-              <span><span></span></span>
-            </span>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
-
-{% endif %}
-
-
-<script>
-
-// for outputting data object
-     const productData = [
-        {%- for u in product.metafields.custom.upsells.value %}
-          { title: '{{ u.title }}', id: '{{ u.id }}', handle: '{{u.handle}}', available: '{{ u.available }}' },
-        {%- endfor %}
-      ];
-    console.log(productData)
-// for outputting data object
-
-   let images = document.querySelectorAll('.image-container > img'); 
-   for (const [prop, value] of Object.entries(productData)) {
-   const endpoint = `${location.origin}/products/${value.handle}?section_id={{section.id}}`;
-   fetch(endpoint)
-  .then(response => response.text())
-  .then(html => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const variantImage = doc.querySelector('modal-opener > div > img');
-    console.log(variantImage);
-    images[prop].src = variantImage.src;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-}
-
-// set up Promise.all for image fetch requests
-
-
-  // empty modal div, which will populate on click
+  .upsell_single {
+     margin-top: 40px;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
+ }
  
+ .upsell_single h3 {
+     font-family: 'Space Grotesk';
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     line-height: 26px;
+     color: #F30F0C;
+     max-width: 100%;
+     flex: 0 0 100%;
+     margin-bottom: 25px;
+     text-transform: capitalize;
+ }
+ 
+ .upsell_single .single_product_main {
+     max-width: calc(33.33% - 25px);
+     flex: 0 0 calc(33.33% - 25px);
+     text-align: center;
+ }
+ 
+ .single_image {
+     background: #D4FFD0;
+     border: 2px solid #FA0F0C;
+     border-radius: 10px;
+     height: 120px;
+     margin-bottom: 15px;
+ }
+ 
+ .single_image img {
+     height: 100%;
+     object-fit: contain;
+ }
+ 
+ .single_content h4 {
+     font-family: 'Space Grotesk';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 16px;
+     line-height: 20px;
+     text-align: center;
+     text-transform: capitalize;
+     color: #000000;
+   padding:0 4px;
+ }
+ 
+ span.price {
+     font-family: 'Space Grotesk';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 14px;
+     line-height: 18px;
+     text-align: center;
+     text-transform: capitalize;
+     color: #000000;
+     margin-top: 12px;
+     display: block;
+ }
+ 
+ .upsell_single .single_product_main button.product-page--add-to-cart.btn-red {
+     min-width: auto;
+     font-weight: 700;
+     font-size: 16px;
+     line-height: 20px;
+     color: #FFFFFF;
+     height: auto;
+     padding: 6px;
+     margin-top: 15px;
+ }
+ .upsell_multiple_wrapper .single_image {
+     background: #D4FFD0;
+     border: 2px solid #FA0F0C;
+     border-radius: 10px;
+     height: 100px;
+     margin-bottom: 15px;
+     padding: 12px;
+ }
+ .upsell_multiple h3 {
+     font-family: 'Space Grotesk';
+     font-style: normal;
+     font-weight: 500;
+     font-size: 20px;
+     line-height: 26px;
+     color: #F30F0C;
+     text-transform: none;
+     margin-bottom: 35px;
+ }
+ 
+ .upsell_multiple {
+     margin-top: 40px;
+       overflow: hidden;
+ }
+ 
+ .upsell_multiple_wrapper {
+     display: flex;
+     flex-wrap: wrap;
+   gap: 20px;
+ }
+ 
+ .upsell_multiple .single_product_main {
+     max-width: calc(25% - 15px);
+     flex: calc(25% - 15px);
+   position:relative;
+ }
+ .upsell_multiple .name_single_pro_check {
+     display: flex;
+     align-items: center;
+     margin-bottom: 15px;
+ }
+ .upsell_multiple .name_single_pro_check:first-child  label {
+   color:#187677;
+ }
+ .upsell_multiple label {
+     font-family: 'Space Grotesk';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 16px;
+     line-height: 18px;
+     text-transform: capitalize;
+     color: #F30F0C;
+     padding-bottom: 0;
+     width: 100%;
+     padding-right: 70px;
+     position: relative;
+ }
+ 
+ .upsell_multiple span.single_price {
+     position: absolute;
+     right: 0;
+     top: 2px;
+ }
+ .upsell_multiple .name_single_active:not(:first-child):after {
+     content: "+";
+     position: absolute;
+     top: 40px;
+     left: -15px;
+     font-weight: 700;
+     color: #e00000;
+ }
+ .upsell_multiple .add_to_cart_total .total-count{
+   font-family: 'Space Grotesk';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 20px;
+   color: #F30F0C;
+ }
+ .add_to_cart_total .total-count span{
+   font-size: 20px;
+   line-height: 24px;
+ }
+ .upsell_multiple .single_image {
+     background: #D4FFD0;
+     border: 2px solid #FA0F0C;
+     border-radius: 10px;
+     height: 100px;
+     margin-bottom: 15px;
+     padding: 12px;
+ }
+ button#add-to-cart-button {
+     background: #F30F0C;
+     border-radius: 30px;
+     border: none;
+     font-family: 'Space Grotesk';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 16px;
+     line-height: 20px;
+     color: #FFFFFF;
+     cursor: pointer;
+     padding: 12px 51px;
+     margin: 15px 0 20px;
+ }
+ 
+ @media (max-width:767px){
+   .upsell_single {
+     padding: 0 15px;
+   }
+   .upsell_multiple{
+     padding: 0 15px;
+   }
+   .upsell_single .single_product_main {
+     max-width: calc(33.33% - 13px);
+     flex: 0 0 calc(33.33% - 13px);
+   }
+   .single_content h4 {
+     font-size: 13px;
+     line-height: 16px;
+     padding:0;
+   }
+   .upsell_single .single_product_main button.product-page--add-to-cart.btn-red {
+       font-size: 12px;
+   }
+   .upsell_multiple .single_image {
+     height: 80px;
+   }
+   .upsell_multiple + .product-page__tabs.tabs {
+     margin-left: 20px;
+     margin-right: 20px;
+ }
+   .upsell_multiple label {
+     font-size: 14px;
+     line-height: 16px;
+ }
+ 
+ .upsell_multiple span.single_price {
+     top: 1px;
+ }
+   .upsell_multiple .name_single_pro_check{
+         align-items: baseline;
+   }
+ }
+ @media (max-width:380px){
+   .upsell_multiple .name_single_pro_check input{
+     position:relative;
+     top:3px;
+   }
+   .upsell_multiple label {
+     font-size: 12px;
+     line-height: 16px;
+   }
+ }
+ .upsell_multiple .name_single_pro_check:first-child label:before {
+     content: "This Item: ";
+ }
+ .upsell_multiple {
+   display : block !important;
+ }
+ 
+ .product-page__tabs.tabs p.variant-tabs__title.tab-block__title {
+   color : rgb(243, 15, 12);
+ }
+ 
+ .product-page__tabs.tabs .tab-block {
+   border-color : rgb(243, 15, 12) !important;
+ }
+ .product-page__tabs{
+   border-color: #F30F0C !important;
+ }
+ .tab-block__title::after {
+     content: url(https://cdn.shopify.com/s/files/1/0042/3834/4321/files/down_arrow_svg.svg?v=1681809762);
+ }
+ 
+   
+ </style>
+ 
+ <script>
+ 
+  {% assign available_products = product.metafields.custom.upsells.value | where: "type", "Wallet" %}
+ 
+    const available = [
+         {%- for ap in available_products limit:4 %}
+        { title: '{{ ap.title }}', product: '{{ ap.product.title }}', type: '{{ ap.type }}', id: '{{ ap.id }}', handle: '{{ap.handle}}', available: '{{ ap.available }}'},
+         {%- endfor %}
+       ];
+ 
+   //console.log(available);
+ 
+   productData = [
+        {%- for u in product.metafields.custom.upsells.value limit:4 %}
+     {'{{ u.title | handleize }}': {{ u | json }}},
+         {%- endfor %}
+       ];
+ 
+   //console.log(productData);
+ 
+ 
+ </script>
+ <product-upsell>
+ <div class="upsell_multiple" data-title="Complete the Experience">
+     <h3>Complete the Experience</h3>
+     <div class="upsell_multiple_wrapper">
+         {%- for u in product.metafields.custom.upsells.value limit:4  %}
+           <!-- id follows this structure "product-variant_id" and data-var-id = var id  -->
+            <div id="" class="single_product_main name_single_active first-div" data-var-id="">
+             <div class="single_image">
+                 <img class="upsell-image" src="{{ u.featured_image.src | img_url: 'master'  }}" alt="{{ u.featured_image.alt }}" />
+             </div>
+         </div>
+         {% endfor %}
+     </div>
+     <div class="add_to_cart_total">
+         <div class="total-count">Total Price: <span>$</span><span class="final_price">107.96</span></div>
+         <button id="add-to-cart-button">Add to Cart</button>
+     </div>
+     <div class="name_single_pro_wrapper">
+         {%- for u in product.metafields.custom.upsells.value limit:4  %}
+     <div class="name_single_pro_check is-checked">
+       <!-- value, id, and for attributes are all based on variant_id: data price is based on variant price-->
+             <input type="checkbox" name="upsell-product" id="" data-price="" value="" checked="" />
+             <label class="var_title" for=""><span class="single_title">Pork Soup Dumplings (50 PC)</span><span class="single_price">$39.99</span>
+             </label>
+         </div>
+         {% endfor %}
+     </div>
+ </div>
+ </product-upsell>
+ 
+ <script>
+ 
+ class ProductUpsell extends window.HTMLElement {
+     connectedCallback() {
+       this.form = document.querySelector('product-form');
+       this.isVariant = window.location.search.length > 0;
+       this.upsellBlocks = document.querySelectorAll('.single_product_main');
+       this.productData = [
+        {%- for u in product.metafields.custom.upsells.value limit:4 %}
+     {product: {{ u | json }}},
+         {%- endfor %}
+       ];
+       this.renderSection(this.productData, this.isVariant);
+     }
+    renderSection(productData, variant) {
+        let images = document.querySelectorAll('.single_image > img');
+        for (const [prop, value] of Object.entries(productData)) {
+          if (variant) {
+            console.log('has variant id in URL');
+          }
+            const endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
+            //console.log(endpoint);
+            fetch(endpoint)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const variantImage = doc.querySelector('div.aspect-square > img');
+                    console.log(variantImage);
+                    images[prop].src = variantImage.src;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
 
-  fetch(window.Shopify.routes.root +'/products/{{ u.handle }}?section_id={{ section.id }}')
-  .then(response => response.text())
-  .then(html => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const variantImage = doc.querySelector('modal-opener > div > img');
-    console.log(variantImage)
-    image.src = variantImage.src;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
 
-// async function doFetches(VID, itemKey) {
-//         const numberOfFetches = 2;
-//         let sellingPlan = document.querySelector("#postId").value;
-
-//         // objects for each call
-
-//         let formData = {
-//           'items': [{
-//            'id': VID,
-//             'selling_plan': sellingPlan,
-//            'quantity': 1
-//            }]
-//          };
-//           let updates = {
-//               'id': itemKey,
-//               'quantity': 0
-//           }
-    
-//         // objects for each call
-
-//     const cartChange = await fetch('https://dosedaily.co/' + 'cart/change.js', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(updates)
-//     });
-//     const cartAdd = await fetch('https://dosedaily.co/' + 'cart/add.js', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(formData)
-//     });
-
-//     // array of Promises
-
-//     const promiseBatch = Promise.all([cartChange, cartAdd]);
-//     console.log(promiseBatch.length);
-
-//     const cartResponses = (await promiseBatch).map(async (r, index) => {
-//       if (index === numberOfFetches - 1) {
-//         window.location.reload();
-//       }
-//     })
-
-//     return cartResponses;
-//     // array of Promises
-// }
-
+   // need to swap out with a mutation observer to trigger section render function
+   
+     createObserver() {
+       const observer = new window.IntersectionObserver((entries, observer) => {
+         this.headerBounds = entries[0].intersectionRect;
+         observer.disconnect();
+       });
+   
+       observer.observe(this.header);
+     }
+   
+   }
+   
+   window.customElements.define('product-upsell', ProductUpsell);
+ 
+ 
+ // for outputting data object
+ 
+ 
+ 
+ // // set up Promise.all for image fetch requests
+ 
+ 
+ //   // empty modal div, which will populate on click
   
-</script>
+ 
+ //   fetch(window.Shopify.routes.root +'/products/{{ u.handle }}?section_id={{ section.id }}')
+ //   .then(response => response.text())
+ //   .then(html => {
+ //     const parser = new DOMParser();
+ //     const doc = parser.parseFromString(html, 'text/html');
+ //     const variantImage = doc.querySelector('modal-opener > div > img');
+ //     console.log(variantImage)
+ //     image.src = variantImage.src;
+ //   })
+ //   .catch(error => {
+ //     console.error('Error:', error);
+ //   });
+ 
+ // async function doFetches(VID, itemKey) {
+ //         const numberOfFetches = 2;
+ //         let sellingPlan = document.querySelector("#postId").value;
+ 
+ //         // objects for each call
+ 
+ //         let formData = {
+ //           'items': [{
+ //            'id': VID,
+ //             'selling_plan': sellingPlan,
+ //            'quantity': 1
+ //            }]
+ //          };
+ //           let updates = {
+ //               'id': itemKey,
+ //               'quantity': 0
+ //           }
+     
+ //         // objects for each call
+ 
+ //     const cartChange = await fetch('https://dosedaily.co/' + 'cart/change.js', {
+ //       method: 'POST',
+ //       headers: {
+ //         'Content-Type': 'application/json'
+ //       },
+ //       body: JSON.stringify(updates)
+ //     });
+ //     const cartAdd = await fetch('https://dosedaily.co/' + 'cart/add.js', {
+ //       method: 'POST',
+ //       headers: {
+ //         'Content-Type': 'application/json'
+ //       },
+ //       body: JSON.stringify(formData)
+ //     });
+ 
+ //     // array of Promises
+ 
+ //     const promiseBatch = Promise.all([cartChange, cartAdd]);
+ //     console.log(promiseBatch.length);
+ 
+ //     const cartResponses = (await promiseBatch).map(async (r, index) => {
+ //       if (index === numberOfFetches - 1) {
+ //         window.location.reload();
+ //       }
+ //     })
+ 
+ //     return cartResponses;
+ //     // array of Promises
+ // }
+   
+ </script>
+ 
+     <!-- <div class="name_single_pro_check is-checked">
+             <input type="checkbox" name="upsell-product" id="39392991477889" data-price="39.99" value="39392991477889" checked="" />
+             <label class="var_title" for="39392991477889"><span class="single_title">Pork Soup Dumplings (50 PC)</span><span class="single_price">$39.99</span>
+             </label>
+         </div>
+         <div class="name_single_pro_check is-checked">
+             <input type="checkbox" name="upsell-product" id="32925265461377" data-price="24.99" value="32925265461377" checked="" />
+             <label for="32925265461377"><span class="single_title">Crafted Sauces</span> <span class="single_price">$24.99</span></label>
+         </div>
+ 
+         <div class="name_single_pro_check is-checked">
+             <input type="checkbox" name="upsell-product" id="19904081625217" data-price="29.99" value="19904081625217" checked="" />
+             <label for="19904081625217"><span class="single_title">Steamer Basket</span> <span class="single_price">$29.99</span></label>
+         </div>
+ 
+         <div class="name_single_pro_check is-checked">
+             <input type="checkbox" name="upsell-product" id="39661585825921" data-price="12.99" value="39661585825921" checked="" />
+             <label for="39661585825921"><span class="single_title">Dumpling Dipping Bowl Set</span> <span class="single_price">$12.99</span></label>
+         </div> -->
