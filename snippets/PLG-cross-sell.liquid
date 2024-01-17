@@ -327,7 +327,7 @@
        //     const filteredValues = variantValues.product.variants?.filter((v, i, arr) => v?.title === color)
        // console.log(filteredValues);
         for (const [prop, value] of Object.entries(productData)) {
-          console.log(variantValues[prop].product[prop].variants);
+          console.log(variantValues[prop].product[prop]);
            const filteredValues = value.product.variants?.filter((v, i, arr) => v?.title === color)
            variants = [...filteredValues];
           if (variant) {
