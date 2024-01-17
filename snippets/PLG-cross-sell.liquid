@@ -323,6 +323,8 @@
         let variants;
 
        const variantValues = Object.values(productData);
+           const filteredValues = variantValues.product.variants?.filter((v, i, arr) => v?.title === color)
+       console.log(filteredValues);
         for (const [prop, value] of Object.entries(productData)) {
            const filteredValues = value.product.variants?.filter((v, i, arr) => v?.title === color)
            variants = [...filteredValues];
