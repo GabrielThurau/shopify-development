@@ -253,15 +253,22 @@
  
  <script>
  
-  {% assign available_products = product.metafields.custom.upsells.value | where: "type", "Wallet" %}
+
+ 
+   //console.log(available);
+
+    {% assign available_products = product.metafields.custom.upsells.value | where: "available" %}
+
+    {% assign ceiling = 4 %}
+    
  
     const available = [
-         {%- for ap in available_products limit:4 %}
-        { title: '{{ ap.title }}', product: '{{ ap.product.title }}', type: '{{ ap.type }}', id: '{{ ap.id }}', handle: '{{ap.handle}}', available: '{{ ap.available }}'},
+         {%- for ap in available_products limit:{{ceiling}} %}
+        { title: '{{ ap.title }}', product: '{{ ap.product.title }}', type: '{{ ap.type }}', id: '{{ ap.id }}', handle: '{{ap.handle}}', available: '{{ ap.available }}', ceiling: '{{ ceiling }}'},
          {%- endfor %}
        ];
  
-   //console.log(available);
+   console.log(available);
  
    productData = [
         {%- for u in product.metafields.custom.upsells.value limit:4 %}
@@ -308,6 +315,7 @@
  class ProductUpsell extends window.HTMLElement {
      connectedCallback() {
        this.form = document.querySelector('product-form');
+       this.variantColor = "";
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
@@ -315,12 +323,12 @@
      {product: {{ u | json }}},
          {%- endfor %}
        ];
-       this.renderCorrectly(this.upsellBlocks, this.productData);
+       this.renderCorrectly(this.upsellBlocks, this.productData, this.variantColor);
        this.postFunction();
        // this.updateUpsells(this.productData, this.isVariant);
      }
 
-    renderCorrectly(upsells, productData) {
+    renderCorrectly(upsells, productData, color) {
       // this is for initially adding all product variant information before any variant updates via Mutation Observer
 
      
