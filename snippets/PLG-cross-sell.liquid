@@ -327,7 +327,7 @@
         for (const [prop, value] of Object.entries(productData)) {
 
           console.log(value.product.variants);
-           const filteredValues = value.product.variants.filter((v, i, arr) => v.product.variants[i]?.title === "Black")
+           const filteredValues = value.product.variants?.filter((v, i, arr) => v.product.variants[i]?.title === "Black")
          console.log(filteredValues)
           if (variant) {
             
