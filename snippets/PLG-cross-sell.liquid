@@ -286,7 +286,6 @@
  
  class ProductUpsell extends window.HTMLElement {
      connectedCallback() {
-       this.form = document.querySelector('product-form');
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
