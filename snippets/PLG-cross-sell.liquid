@@ -322,6 +322,7 @@
         //const rightVariant = productData.filter((word) => word.length > 6);
        const entries = Object.values(productData);
        console.log(entries)
+       console.log('entries')
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
             `${location.origin}/products/${value.product.handle}?variant=${variant}?section_id={{section.id}}`;
