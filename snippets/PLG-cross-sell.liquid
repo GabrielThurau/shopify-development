@@ -320,11 +320,12 @@
         let endpoint;
         let color = "Black";
         let dataVariant;
+        let variants = ;
 
        const variantValues = Object.values(productData);
         for (const [prop, value] of Object.entries(productData)) {
            const filteredValues = value.product.variants?.filter((v, i, arr) => v?.title === Color)
-           console.log(filteredValues)
+           variants[...filteredValues];
           if (variant) {
             
            endpoint = `${location.origin}/products/${value.product.handle}?variant=${value.product.variants[prop].id}?section_id={{section.id}}`;
@@ -332,6 +333,8 @@
           else {
           endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
           }
+
+           console.log(variants)
 
           // if (value.product.variants[prop]?.title === color) {
           
