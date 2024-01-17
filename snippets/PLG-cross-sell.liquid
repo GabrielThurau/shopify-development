@@ -305,8 +305,10 @@
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
-       {%- for u in product.metafields.custom.upsells.value | where: "available"  limit:4 %}
+       {%- for u in product.metafields.custom.upsells.value limit:4 | where: "available" %}
+        {% if u.available %}
      {product: {{ u | json }}},
+         {% endif %}
          {%- endfor %}
        ];
        this.renderCorrectly(this.upsellBlocks, this.productData, this.variantColor);
@@ -317,11 +319,8 @@
     renderCorrectly(upsells, productData, color) {
       // this is for initially adding all product variant information before any variant updates via Mutation Observer
 
-    
-      
-   console.log(productData)
-        console.log(productData)
-        console.log(productData)
+  
+   
     productData.forEach( (d, i) => {
     console.log(d.product.variants)
       });
