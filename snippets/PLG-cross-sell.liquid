@@ -319,6 +319,9 @@
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
+        //const rightVariant = productData.filter((word) => word.length > 6);
+       const entries = Object.values(productData);
+       console.log(entries)
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
             `${location.origin}/products/${value.product.handle}?variant=${variant}?section_id={{section.id}}`;
@@ -328,6 +331,7 @@
           }
        
             console.log(endpoint);
+            const rightVariant = 
             console.log(value.product.variants)
             fetch(endpoint)
                 .then(response => response.text())
