@@ -332,7 +332,7 @@
           endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
           }
 
-          if (value.product.variants[prop]?.title === color) {
+          if (value.product.variants[prop - 1]?.title === color) {
           
            dataVariant = value.product.variants[prop].id;
       
