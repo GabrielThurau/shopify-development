@@ -324,7 +324,7 @@
        
        const variantValues = Object.values(productData);
        //console.log(variantValues[0].product.variants[0].title);
-        const rightVariant = variantValues.filter((v, i, arr) => v.product.variants[i].?title === "Black");
+        const rightVariant = variantValues.filter((v, i, arr) => v.product.variants[i]?.title === "Black");
       console.log(rightVariant)
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
