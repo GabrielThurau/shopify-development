@@ -254,25 +254,10 @@
  <script>
  
 
- 
-   //console.log(available);
-
-    {% assign available_products = product.metafields.custom.upsells.value | where: "available" %}
-
-    {% assign ceiling = 4 %}
-    
- 
-    const available = [
-         {%- for ap in available_products limit:{{ceiling}} %}
-        { title: '{{ ap.title }}', product: '{{ ap.product.title }}', type: '{{ ap.type }}', id: '{{ ap.id }}', handle: '{{ap.handle}}', available: '{{ ap.available }}'},
-         {%- endfor %}
-       ];
- 
-   console.log(available);
-   console.log('hello')
+ {% assign available_products = product.metafields.custom.upsells.value | where: "available" %}
  
    productData = [
-        {%- for u in product.metafields.custom.upsells.value limit:4 %}
+        {%- for u in available_products limit:4 %}
      {'{{ u.title | handleize }}': {{ u | json }}},
          {%- endfor %}
        ];
@@ -320,8 +305,10 @@
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
-        {%- for u in product.metafields.custom.upsells.value limit:4 %}
+       {%- for u in product.metafields.custom.upsells.value limit:4 %}
+         {% if u.available %}}
      {product: {{ u | json }}},
+         {% endif %}}
          {%- endfor %}
        ];
        this.renderCorrectly(this.upsellBlocks, this.productData, this.variantColor);
