@@ -318,7 +318,24 @@
        this.renderSection();
        // this.updateUpsells(this.productData, this.isVariant);
      }
-    updateUpsells(productData, variant) {
+
+    renderSection() {
+      console.log('section rendered');
+    }
+
+   
+   // need to swap out with a mutation observer to trigger section render function
+   
+     createObserver() {
+       const observer = new window.IntersectionObserver((entries, observer) => {
+         this.headerBounds = entries[0].intersectionRect;
+         observer.disconnect();
+       });
+   
+       observer.observe(this.header);
+     }
+
+       updateUpsells(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
         let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
@@ -345,22 +362,6 @@
                 });
         }
     }
-
-    renderSection() {
-      console.log('section rendered');
-    }
-
-
-   // need to swap out with a mutation observer to trigger section render function
-   
-     createObserver() {
-       const observer = new window.IntersectionObserver((entries, observer) => {
-         this.headerBounds = entries[0].intersectionRect;
-         observer.disconnect();
-       });
-   
-       observer.observe(this.header);
-     }
    
    }
    
