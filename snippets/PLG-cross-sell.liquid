@@ -322,8 +322,8 @@
        
        const variantValues = Object.values(productData);
        console.log(variantValues[0].product.variants[0].title);
-        const rightVariant = variantValues.filter((v, i) => v[i].product.variants[i].title === color);
-      //console.log(rightVariant)
+        const rightVariant = variantValues.filter((v, i) => v[i].product);
+      console.log(rightVariant)
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
             `${location.origin}/products/${value.product.handle}?variant=${value.product.variants[prop].id}?section_id={{section.id}}`;
