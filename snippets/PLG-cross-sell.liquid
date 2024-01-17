@@ -331,6 +331,10 @@
           else {
           endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
           }
+
+          if (value.product.variants[prop].title === color) {
+            console.log('this is black')
+          }
        
             //console.log(endpoint);
             const rightVariant = 
