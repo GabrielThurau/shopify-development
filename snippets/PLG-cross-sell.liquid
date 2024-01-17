@@ -315,14 +315,19 @@
      {product: {{ u | json }}},
          {%- endfor %}
        ];
-       this.renderCorrectly(this.upsellBlocks);
+       this.renderCorrectly(this.upsellBlocks, this.productData);
        this.postFunction();
        // this.updateUpsells(this.productData, this.isVariant);
      }
 
-    renderCorrectly(upsells) {
+    renderCorrectly(upsells, productData) {
       // this is for initially adding all product variant information before any variant updates via Mutation Observer
+
+     
+    
+      
       console.log(upsells);
+      console.log(productData);
     }
 
     postFunction() {
