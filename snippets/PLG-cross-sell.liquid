@@ -330,7 +330,7 @@
           endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
           }
        
-            console.log(endpoint);
+            //console.log(endpoint);
             const rightVariant = 
             console.log(value.product.variants)
             fetch(endpoint)
@@ -340,7 +340,7 @@
                     const doc = parser.parseFromString(html, 'text/html');
                     const variantImage = doc.querySelector('div.aspect-square > img');
                     console.log(variantImage);
-                    images[prop].src = variantImage.src;
+                    //images[prop].src = variantImage.src;
                     //upsellBlocks[prop].id = ""
                 })
                 .catch(error => {
