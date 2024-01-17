@@ -315,12 +315,18 @@
      {product: {{ u | json }}},
          {%- endfor %}
        ];
-       this.renderSection();
+       this.renderCorrectly(this.upsellBlocks);
+       this.postFunction();
        // this.updateUpsells(this.productData, this.isVariant);
      }
 
-    renderSection() {
-      console.log('section rendered');
+    renderCorrectly(upsells) {
+      // this is for initially adding all product variant information before any variant updates via Mutation Observer
+      console.log(upsells);
+    }
+
+    postFunction() {
+      
     }
 
    
@@ -442,6 +448,26 @@
  // }
    
  </script>
+
+
+<script>
+
+
+
+
+
+
+  
+</script>
+
+
+
+
+
+
+
+
+ 
  
      <!-- <div class="name_single_pro_check is-checked">
              <input type="checkbox" name="upsell-product" id="39392991477889" data-price="39.99" value="39392991477889" checked="" />
