@@ -327,7 +327,11 @@
     
       
       console.log(upsells);
-      console.log(productData);
+    productData.forEach( (d, i) => {
+    console.log(d.variants)
+      });
+
+
     }
 
     postFunction() {
