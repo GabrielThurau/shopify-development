@@ -322,7 +322,7 @@
      
        
        const variantValues = Object.values(productData);
-       console.log(variantValues[0].product.variants[0].title);
+       console.log(variantValues[0].product.variants[0]);
         const rightVariant = variantValues.filter((v, i, arr) => v.product);
       console.log(rightVariant)
         for (const [prop, value] of Object.entries(productData)) {
