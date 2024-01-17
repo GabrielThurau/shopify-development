@@ -315,9 +315,10 @@
      {product: {{ u | json }}},
          {%- endfor %}
        ];
-       this.renderSection(this.productData, this.isVariant);
+       this.renderSection();
+       // this.updateUpsells(this.productData, this.isVariant);
      }
-    renderSection(productData, variant) {
+    updateUpsells(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
         let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
@@ -343,6 +344,10 @@
                     console.error('Error:', error);
                 });
         }
+    }
+
+    renderSection() {
+      console.log('section rendered');
     }
 
 
