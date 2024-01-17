@@ -325,10 +325,9 @@
        const variantValues = Object.values(productData);
         for (const [prop, value] of Object.entries(productData)) {
            let filteredValues = value.product.variants?.filter((v, i, arr) => v?.title === color)
-          // new array on every iteration. 
           variants.push(filteredValues)
           if (variant) {
-            
+          
            endpoint = `${location.origin}/products/${value.product.handle}?variant=${value.product.variants[prop].id}?section_id={{section.id}}`;
           }
           else {
