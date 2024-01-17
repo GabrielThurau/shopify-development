@@ -301,7 +301,6 @@
  class ProductUpsell extends window.HTMLElement {
      connectedCallback() {
        this.form = document.querySelector('product-form');
-       this.variantColor = "";
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
@@ -312,13 +311,14 @@
          {%- endfor %}
        ];
        this.postFunction();
-       this.updateUpsells(this.productData, this.isVariant, this.variantColor);
+       this.updateUpsells(this.productData, this.isVariant);
      }
 
-     updateUpsells(productData, variant, color="Black") {
+     updateUpsells(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
+        let color = "Black";
 
        console.log(color)
        
