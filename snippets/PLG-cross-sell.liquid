@@ -315,12 +315,12 @@
        this.updateUpsells(this.productData, this.isVariant, this.variantColor);
      }
 
-     updateUpsells(productData, variant, color="Black") {
+     updateUpsells(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
-
-       console.log(color)
+        let color = "Black";
+     
        
        const variantValues = Object.values(productData);
        console.log(variantValues[0].product.variants[0].title);
