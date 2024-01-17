@@ -263,8 +263,8 @@
     
  
     const available = [
-         {%- for ap in available_products limit:{{ceiling}} %}
-        { title: '{{ ap.title }}', product: '{{ ap.product.title }}', type: '{{ ap.type }}', id: '{{ ap.id }}', handle: '{{ap.handle}}', available: '{{ ap.available }}', ceiling: '{{ ceiling }}'},
+         {%- for ap in available_products limit:4 %}
+        { title: '{{ ap.title }}', product: '{{ ap.product.title }}', type: '{{ ap.type }}', id: '{{ ap.id }}', handle: '{{ap.handle}}', available: '{{ ap.available }}'},
          {%- endfor %}
        ];
  
