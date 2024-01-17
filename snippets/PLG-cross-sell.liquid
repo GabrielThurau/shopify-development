@@ -315,15 +315,15 @@
        this.updateUpsells(this.productData, this.isVariant, this.variantColor);
      }
 
-     updateUpsells(productData, variant, color) {
+     updateUpsells(productData, variant, color="black") {
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
        
        const variantValues = Object.values(productData);
-       console.log(variantValues[0]);
-        //const rightVariant = variantValues.filter((variant) => variant.title > 6);
-       console.log('entries')
+       console.log(variantValues[0].product);
+        const rightVariant = variantValues.filter((v, i) => v[i].title === color);
+       console.log(rightVariant)
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
             `${location.origin}/products/${value.product.handle}?variant=${variant}?section_id={{section.id}}`;
