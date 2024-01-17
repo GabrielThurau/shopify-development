@@ -319,11 +319,16 @@
      }
     renderSection(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
+        let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
             console.log('has variant id in URL');
+            `${location.origin}/products/${value.product.handle}?variant=${variant}?section_id={{section.id}}`;
           }
-            const endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
+          else {
+          endpoint = `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
+          }
+       
             console.log(endpoint);
             fetch(endpoint)
                 .then(response => response.text())
