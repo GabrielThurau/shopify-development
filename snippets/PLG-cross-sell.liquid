@@ -317,6 +317,7 @@
 
      updateUpsells(productData, variant, color) {
         let images = document.querySelectorAll('.single_image > img');
+        let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
         for (const [prop, value] of Object.entries(productData)) {
           if (variant) {
@@ -335,6 +336,7 @@
                     const variantImage = doc.querySelector('div.aspect-square > img');
                     console.log(variantImage);
                     images[prop].src = variantImage.src;
+                    //upsellBlocks[prop].id = ""
                 })
                 .catch(error => {
                     console.error('Error:', error);
