@@ -310,8 +310,10 @@
         for (const [prop, value] of Object.entries(productData)) {
            let filteredVariant = value.product.variants?.filter((v, i, arr) => v?.title === color)
 
-          const endpoint = variant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1).id}?section_id={{section.id}}`
-          :  `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
+          const endpoint = `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1).id}?section_id={{section.id}}`
+
+          // const endpoint = variant && filteredVariant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1).id}?section_id={{section.id}}`
+          // :  `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
 
           console.log(endpoint)
           // update all needed product information after the fetch for the images are complete.
