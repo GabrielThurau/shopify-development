@@ -351,8 +351,8 @@
    // need to swap out with a mutation observer to trigger section render function
    
      createObserver() {
+         let previousUrl = '';
     const observer = new MutationObserver(function(mutations) {
-    let previousUrl = '';
     if (location.href !== previousUrl) {
       previousUrl = location.href;
       console.log(`URL changed to ${location.href}`);
