@@ -310,6 +310,10 @@
         for (const [prop, value] of Object.entries(productData)) {
            let filteredVariant = value.product.variants?.filter((v, i, arr) => v?.title === color)
 
+          if (filteredVariant.length === 0) {
+            console.log('no such thing')
+          }
+
           const endpoint = `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1).id}?section_id={{section.id}}`
 
           // const endpoint = variant && filteredVariant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1).id}?section_id={{section.id}}`
