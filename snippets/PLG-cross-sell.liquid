@@ -322,9 +322,13 @@
                   console.log(filteredVariant);
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
-                    const variantImage = doc.querySelector('div.aspect-square > img');
+                    const variantImage = doc.querySelector('modal-opener > div > img');
+                 
                     // console.log(variantImage);
-                    // images[prop].src = variantImage.src;
+                  setTimeout(() => {
+     images[prop].src = variantImage.src;
+                    console.log('image swapped')
+}, 5000);
                     //upsellBlocks[prop].id = ""
                 })
                 .catch(error => {
