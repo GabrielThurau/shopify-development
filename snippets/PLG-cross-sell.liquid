@@ -295,7 +295,7 @@
          {% endif %}
          {%- endfor %}
        ];
-       this.postFunction();
+       this.attachPostEvent();
        this.updateUpsells(this.productData, this.isVariant);
      }
 
@@ -333,25 +333,33 @@
                 });
         }
     }
-     
+
+    attachPostEvent() {
+      
+    }
 
 
     postFunction() {
        
     }
 
+   calculatePrice() {
+     
+   }
    
    // need to swap out with a mutation observer to trigger section render function
    
      createObserver() {
-       const observer = new window.IntersectionObserver((entries, observer) => {
-         this.headerBounds = entries[0].intersectionRect;
-         observer.disconnect();
-       });
-   
-       observer.observe(this.header);
+    const observer = new MutationObserver(function(mutations) {
+    let previousUrl = '';
+    if (location.href !== previousUrl) {
+      previousUrl = location.href;
+      console.log(`URL changed to ${location.href}`);
+    }
+    });
+    const config = {subtree: true, childList: true};
+    observer.observe(document, config);
      }
-
    }
    
    window.customElements.define('product-upsell', ProductUpsell);
