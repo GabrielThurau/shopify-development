@@ -286,6 +286,13 @@
  </product-upsell>
  
  <script>
+
+const productJSONs = document.querySelectorAll('#product-json');
+const productData = [];
+
+productJSONs.forEach(p => {
+    productData.push(JSON.parse(p.innerHTML))
+});
  
  class ProductUpsell extends window.HTMLElement {
     constructor() {
