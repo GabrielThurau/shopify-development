@@ -263,6 +263,7 @@
                  <img class="upsell-image" src="{{ u.featured_image.src | img_url: 'master'  }}" alt="{{ u.featured_image.alt }}" />
              </div>
          </div>
+       <script id="product-json">{{ u | json }}</script>
          {% endfor %}
      </div>
      <div class="add_to_cart_total">
@@ -285,11 +286,14 @@
  <script>
  
  class ProductUpsell extends window.HTMLElement {
+    constructor() {
+     
+   }
      connectedCallback() {
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
-       {%- for u in product.metafields.custom.upsells.value limit:4 %}
+       {%- for u in product.metafields.custom.upsells.value limit:4  %}
         {% if u.available %}
      {product: {{ u | json }}},
          {% endif %}
