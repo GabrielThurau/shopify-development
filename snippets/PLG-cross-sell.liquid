@@ -321,6 +321,8 @@ productJSONs.forEach(p => {
         let color = "Black";
         let dataVariant;
 
+       console.log(productData)
+
        const variantValues = Object.values(productData);
         for (const [prop, value] of Object.entries(productData)) {
           // if filtered variant is color selected on current page, update the color. If not, default to black. 
