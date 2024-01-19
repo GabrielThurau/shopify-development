@@ -286,49 +286,39 @@
  </product-upsell>
  
  <script>
-
-const productJSONs = document.querySelectorAll('#product-json');
-const productData = [];
-
-productJSONs.forEach(p => {
-    productData.push(JSON.parse(p.innerHTML))
-});
  
  class ProductUpsell extends window.HTMLElement {
-   static productData = [
+    constructor() {
+     super();
+   }
+     connectedCallback() {
+       this.isVariant = window.location.search.length > 0;
+       this.upsellBlocks = document.querySelectorAll('.single_product_main');
+       this.productData = [
        {%- for u in product.metafields.custom.upsells.value limit:4  %}
         {% if u.available %}
      {product: {{ u | json }}},
          {% endif %}
          {%- endfor %}
        ];
-     static isVariant = window.location.search.length > 0;
-    constructor() {
-     super();
-   }
-     connectedCallback() {
-       this.upsellBlocks = document.querySelectorAll('.single_product_main');
-       this.productData = 
        this.attachPostEvent();
        this.createObserver();
-       this.updateUpsells();
+       this.updateUpsells(this.productData, this.isVariant);
      }
 
-     updateUpsells() {
+     updateUpsells(productData, variant) {
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
         let color = "Black";
         let dataVariant;
 
-        console.log(ProductUpsell.isVariant)
-
        const variantValues = Object.values(productData);
         for (const [prop, value] of Object.entries(productData)) {
           // if filtered variant is color selected on current page, update the color. If not, default to black. 
-         const filteredVariant = isVariant ? value.product.variants?.filter((v, i, arr) => v?.title === color) : value.product.variants?.filter((v, i, arr) => v?.title === "Black")
+         const filteredVariant = variant ? value.product.variants?.filter((v, i, arr) => v?.title === color) : value.product.variants?.filter((v, i, arr) => v?.title === "Black")
 
-          const endpoint = isVariant && filteredVariant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1)?.id}?section_id={{section.id}}`: `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
+          const endpoint = variant && filteredVariant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1)?.id}?section_id={{section.id}}`: `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
 
           console.log(endpoint)
           // update all needed product information after the fetch for the images are complete.
