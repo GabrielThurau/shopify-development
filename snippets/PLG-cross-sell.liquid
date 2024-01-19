@@ -302,11 +302,11 @@ productJSONs.forEach(p => {
          {% endif %}
          {%- endfor %}
        ];
+     static isVariant = window.location.search.length > 0;
     constructor() {
      super();
    }
      connectedCallback() {
-       this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = 
        this.attachPostEvent();
@@ -321,9 +321,7 @@ productJSONs.forEach(p => {
         let color = "Black";
         let dataVariant;
 
-       console.log(productData)
-       console.log(productData)
-       console.log(productData)
+        console.log(isVariant)
 
        const variantValues = Object.values(productData);
         for (const [prop, value] of Object.entries(productData)) {
