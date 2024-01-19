@@ -326,9 +326,9 @@ productJSONs.forEach(p => {
        const variantValues = Object.values(productData);
         for (const [prop, value] of Object.entries(productData)) {
           // if filtered variant is color selected on current page, update the color. If not, default to black. 
-         const filteredVariant = variant ? value.product.variants?.filter((v, i, arr) => v?.title === color) : value.product.variants?.filter((v, i, arr) => v?.title === "Black")
+         const filteredVariant = isVariant ? value.product.variants?.filter((v, i, arr) => v?.title === color) : value.product.variants?.filter((v, i, arr) => v?.title === "Black")
 
-          const endpoint = variant && filteredVariant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1)?.id}?section_id={{section.id}}`: `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
+          const endpoint = isVariant && filteredVariant ? `${location.origin}/products/${value.product.handle}?variant=${filteredVariant.at(-1)?.id}?section_id={{section.id}}`: `${location.origin}/products/${value.product.handle}?section_id={{section.id}}`;
 
           console.log(endpoint)
           // update all needed product information after the fetch for the images are complete.
