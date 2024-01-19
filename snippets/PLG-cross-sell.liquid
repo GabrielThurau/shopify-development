@@ -263,7 +263,9 @@
                  <img class="upsell-image" src="{{ u.featured_image.src | img_url: 'master'  }}" alt="{{ u.featured_image.alt }}" />
              </div>
          </div>
+       {% if u.available %}
        <script id="product-json">{{ u | json }}</script>
+       {% endif %}
          {% endfor %}
      </div>
      <div class="add_to_cart_total">
