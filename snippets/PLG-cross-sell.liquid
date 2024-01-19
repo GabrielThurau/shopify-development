@@ -311,10 +311,10 @@ productJSONs.forEach(p => {
        this.productData = 
        this.attachPostEvent();
        this.createObserver();
-       this.updateUpsells(this.isVariant);
+       this.updateUpsells();
      }
 
-     updateUpsells(variant) {
+     updateUpsells() {
         let images = document.querySelectorAll('.single_image > img');
         let upsellBlocks = document.querySelectorAll('.single_product_main');
         let endpoint;
