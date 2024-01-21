@@ -289,7 +289,7 @@
  
  class ProductUpsell extends window.HTMLElement {
    static get observedAttributes() {
-    return ["color", "size"];
+    return ["id"];
   }
     constructor() {
      super();
@@ -380,12 +380,16 @@
    }
    
    window.customElements.define('product-upsell', ProductUpsell);
+
+   atc.onclick = function () {
+  // logic for add to cart functionality
+ };
  
 
  </script>
 
 
-<script>
+<script> 
 
 
  // async function doFetches(VID, itemKey) {
