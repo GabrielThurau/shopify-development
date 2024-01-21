@@ -354,13 +354,13 @@
     }
 
    calculatePrice() {
-     
+     console.log('calculate price');
    }
 
+   // whenever we need to run calculate price function / change id and this will trigger the calculate price function
+
          attributeChangedCallback(name, oldValue, newValue) {
-    console.log(
-      `Attribute ${name} has changed from ${oldValue} to ${newValue}.`,
-    );
+    this.calculatePrice();
   }
    
    // need to swap out with a mutation observer to trigger section render function
