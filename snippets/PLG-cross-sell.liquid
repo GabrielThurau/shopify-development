@@ -293,6 +293,7 @@
      super();
    }
      connectedCallback() {
+       console.log(observedAttributes)
        this.isVariant = window.location.search.length > 0;
        this.upsellBlocks = document.querySelectorAll('.single_product_main');
        this.productData = [
