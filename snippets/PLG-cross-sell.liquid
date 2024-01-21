@@ -288,6 +288,7 @@
  <script>
  
  class ProductUpsell extends window.HTMLElement {
+   static observedAttributes = ["size"];
     constructor() {
      super();
    }
@@ -352,6 +353,12 @@
    calculatePrice() {
      
    }
+
+         attributeChangedCallback(name, oldValue, newValue) {
+    console.log(
+      `Attribute ${name} has changed from ${oldValue} to ${newValue}.`,
+    );
+  }
    
    // need to swap out with a mutation observer to trigger section render function
    
