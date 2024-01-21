@@ -288,7 +288,9 @@
  <script>
  
  class ProductUpsell extends window.HTMLElement {
-   static observedAttributes = ["src"];
+   static get observedAttributes() {
+    return ["color", "size"];
+  }
     constructor() {
      super();
    }
