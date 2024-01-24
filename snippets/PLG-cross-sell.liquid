@@ -276,7 +276,7 @@
          {%- for u in product.metafields.custom.upsells.value limit:4  %}
      <div class="name_single_pro_check is-checked">
        <!-- value, id, and for attributes are all based on variant_id: data price is based on variant price-->
-             <input type="checkbox" name="upsell-product" id="" data-price="" value="" checked="" />
+             <input type="checkbox" name="upsell-product" id="" data-price="123" value="" checked="" />
              <label class="var_title" for=""><span class="single_title">Pork Soup Dumplings (50 PC)</span><span class="single_price">$39.99</span>
              </label>
          </div>
@@ -352,6 +352,31 @@
     postFunction() {
        
     }
+
+
+   function calculateTotal() {
+     let priceArray = [];
+     let allChecks = document.querySelectorAll('.name_single_pro_check.is-checked input')
+     let total = 0;
+
+     allChecks.forEach(c => {
+     console.log(c.dataset.price)
+     });
+     
+ 
+  $(".name_single_pro_check.is-checked input").each(function(){
+      var total = 0;
+      var single_Price = $(this).attr('data-price');
+      priceArry.push(single_Price);
+  });  
+  setTimeout(function() {
+   var total = 0; // variable to store the total
+   $.each(priceArry, function(index, value) {
+    total += parseFloat(value) || 0;
+   });
+  $('.total-count span.final_price').text(total.toFixed(2));
+  }, 1000);
+}
 
    calculatePrice() {
      console.log('calculate price');
