@@ -378,25 +378,28 @@
      let checkboxes = document.querySelectorAll('.name_single_pro_check input');
 
      // add click events to all of them
+
+        for (let i = 0; i < checkboxElems.length; i++) {
+    checkboxElems[i].addEventListener("click", displayCheck);
+    }
    }
 
 
-   for (var i = 0; i < checkboxElems.length; i++) {
-  checkboxElems[i].addEventListener("click", displayCheck);
-}
+
 
 function displayCheck(e) {
-  if (e.target.checked) {
-    selections[e.target.id] = {
-      name: e.target.name,
-      value: e.target.value
-    };
-  } 
-  else {
-    delete selections[e.target.id];
-  }
+  console.log(e.target)
+  // if (e.target.checked) {
+  //   selections[e.target.id] = {
+  //     name: e.target.name,
+  //     value: e.target.value
+  //   };
+  // } 
+  // else {
+  //   delete selections[e.target.id];
+  // }
 
-
+}
 
    $('.name_single_pro_check input, .name_single_pro_check label').click(function() {
   if(!$(this).is(':checked')){
