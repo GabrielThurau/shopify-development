@@ -362,15 +362,16 @@
      allChecks.forEach(c => {
        priceArray.push(c.dataset.price)
      });
-     
+
+     console.log(priceArray)
   
-  setTimeout(function() {
-   var total = 0; // variable to store the total
-   $.each(priceArry, function(index, value) {
-    total += parseFloat(value) || 0;
-   });
-  $('.total-count span.final_price').text(total.toFixed(2));
-  }, 1000);
+  // setTimeout(function() {
+  //  var total = 0; // variable to store the total
+  //  $.each(priceArry, function(index, value) {
+  //   total += parseFloat(value) || 0;
+  //  });
+  // $('.total-count span.final_price').text(total.toFixed(2));
+  // }, 1000);
 }
 
    calculatePrice() {
