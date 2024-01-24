@@ -350,32 +350,32 @@
 
 
     postFunction() {
-       
+        
     }
 
 
-   function calculateTotal() {
-     let priceArray = [];
-     let allChecks = document.querySelectorAll('.name_single_pro_check.is-checked input')
-     let total = 0;
-
+  static calculatePrice() {
+     console.log('calculate price');
+      let priceArray = [];
+     let allChecks = document.querySelectorAll('.name_single_pro_check.is-checked input');
      allChecks.forEach(c => {
        priceArray.push(c.dataset.price)
      });
 
-     console.log(priceArray)
-  
-  // setTimeout(function() {
-  //  var total = 0; // variable to store the total
-  //  $.each(priceArry, function(index, value) {
-  //   total += parseFloat(value) || 0;
-  //  });
-  // $('.total-count span.final_price').text(total.toFixed(2));
-  // }, 1000);
-}
+      const converted = priceArray
+     .map((str) => str.replace(/\$/g, ''))
+     .map((string) => Number(string));
 
-   calculatePrice() {
-     console.log('calculate price');
+     const total = converted.reduce(function (previousValue, currentValue) {
+     return previousValue + currentValue;
+    });
+
+   console.log(total)
+    
+   }
+
+   static syncChecks() {
+     
    }
 
    // whenever we need to run calculate price function / change id and this will trigger the calculate price function
