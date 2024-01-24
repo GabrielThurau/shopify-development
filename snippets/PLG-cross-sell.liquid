@@ -379,7 +379,6 @@
      let checkboxes = document.querySelectorAll('.name_single_pro_check input');
 
      // add click events to all of them
-
         for (let i = 0; i < checkboxes.length; i++) {
     checkboxes[i].addEventListener("click", ProductUpsell.displayCheck);
     }
@@ -388,12 +387,12 @@
 
 static displayCheck(e) {
   console.log(e.target)
-  // if (e.target.checked) {
-  //   selections[e.target.id] = {
-  //     name: e.target.name,
-  //     value: e.target.value
-  //   };
-  // } 
+  if (e.target.checked) {
+    selections[e.target.id] = {
+      name: e.target.name,
+      value: e.target.value
+    };
+  } 
   // else {
   //   delete selections[e.target.id];
   // }
