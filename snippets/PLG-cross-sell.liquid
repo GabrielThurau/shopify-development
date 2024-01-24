@@ -276,8 +276,8 @@
          {%- for u in product.metafields.custom.upsells.value limit:4  %}
      <div class="name_single_pro_check is-checked">
        <!-- value, id, and for attributes are all based on variant_id: data price is based on variant price-->
-             <input type="checkbox" name="upsell-product" id="" data-price="123" value="" checked="" />
-             <label class="var_title" for=""><span class="single_title">Pork Soup Dumplings (50 PC)</span><span class="single_price">$39.99</span>
+             <input type="checkbox-{{ forloop.index0 }}" name="upsell-product" id="" data-price="123" value="" checked="" />
+             <label class="var_title" for="checkbox-{{ forloop.index0 }}"><span class="single_title">Pork Soup Dumplings (50 PC)</span><span class="single_price">$39.99</span>
              </label>
          </div>
          {% endfor %}
@@ -375,8 +375,50 @@
    }
 
    static syncChecks() {
-     
+     let checkboxes = document.querySelectorAll('.name_single_pro_check input');
+
+     // add click events to all of them
    }
+
+
+   for (var i = 0; i < checkboxElems.length; i++) {
+  checkboxElems[i].addEventListener("click", displayCheck);
+}
+
+function displayCheck(e) {
+  if (e.target.checked) {
+    selections[e.target.id] = {
+      name: e.target.name,
+      value: e.target.value
+    };
+  } 
+  else {
+    delete selections[e.target.id];
+  }
+
+
+
+   $('.name_single_pro_check input, .name_single_pro_check label').click(function() {
+  if(!$(this).is(':checked')){
+    $(this).parent().removeClass("is-checked");
+    var product_val = $(this).val();
+    $("#product-"+product_val).hide();
+    $("#product-"+product_val).removeClass('name_single_active');
+  }
+  else{
+  $(this).parent().addClass("is-checked");
+  var product_val = $(this).val();
+  $("#product-" + product_val).show();
+    $("#product-"+product_val).addClass('name_single_active');
+  }
+  
+  calculateTotal();
+ 
+}); 
+
+
+
+   
 
    // whenever we need to run calculate price function / change id and this will trigger the calculate price function
 
