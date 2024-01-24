@@ -394,10 +394,10 @@ static displayCheck(e) {
 
   console.dir(e.target)
   if (!e.target.checked) {
-  e.target.parentNode.classList.add('is-checked');
+  e.target.parentNode.classList.remove('is-checked');
   } 
   else {
-    e.target.parentNode.classList.remove('is-checked');
+    e.target.parentNode.classList.add('is-checked');
   }
   ProductUpsell.calculatePrice();
 }
