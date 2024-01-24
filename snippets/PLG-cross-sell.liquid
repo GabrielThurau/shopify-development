@@ -356,7 +356,7 @@
 
 
   static calculatePrice() {
-     console.log('calculate price');
+     const finalPrice = document.querySelector('.final_price');
       let priceArray = [];
      let allChecks = document.querySelectorAll('.name_single_pro_check.is-checked input');
      allChecks.forEach(c => {
@@ -372,7 +372,7 @@
     });
 
    console.log(total)
-    
+    finalPrice.textContent = total;
    }
 
    static syncChecks() {
@@ -387,19 +387,15 @@
 
 
 static displayCheck(e) {
-    let selections = {};
+
   console.log(e.target)
   if (e.target.checked) {
-    selections[e.target.id] = {
-      name: e.target.name,
-      value: e.target.value
-    };
-    console.log(selections)
+  
   } 
   else {
-    delete selections[e.target.id];
-    console.log(selections)
+  
   }
+  ProductUpsell.calculatePrice();
 }
 
   //  $('.name_single_pro_check input, .name_single_pro_check label').click(function() {
