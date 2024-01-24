@@ -360,15 +360,10 @@
      let total = 0;
 
      allChecks.forEach(c => {
-     console.log(c.dataset.price)
+       priceArray.push(c.dataset.price)
      });
      
- 
-  $(".name_single_pro_check.is-checked input").each(function(){
-      var total = 0;
-      var single_Price = $(this).attr('data-price');
-      priceArry.push(single_Price);
-  });  
+  
   setTimeout(function() {
    var total = 0; // variable to store the total
    $.each(priceArry, function(index, value) {
