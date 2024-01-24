@@ -399,23 +399,23 @@ static displayCheck(e) {
 
 }
 
-   $('.name_single_pro_check input, .name_single_pro_check label').click(function() {
-  if(!$(this).is(':checked')){
-    $(this).parent().removeClass("is-checked");
-    var product_val = $(this).val();
-    $("#product-"+product_val).hide();
-    $("#product-"+product_val).removeClass('name_single_active');
-  }
-  else{
-  $(this).parent().addClass("is-checked");
-  var product_val = $(this).val();
-  $("#product-" + product_val).show();
-    $("#product-"+product_val).addClass('name_single_active');
-  }
+  //  $('.name_single_pro_check input, .name_single_pro_check label').click(function() {
+  // if(!$(this).is(':checked')){
+  //   $(this).parent().removeClass("is-checked");
+  //   var product_val = $(this).val();
+  //   $("#product-"+product_val).hide();
+  //   $("#product-"+product_val).removeClass('name_single_active');
+  // }
+  // else{
+  // $(this).parent().addClass("is-checked");
+  // var product_val = $(this).val();
+  // $("#product-" + product_val).show();
+  //   $("#product-"+product_val).addClass('name_single_active');
+  // }
   
-  calculateTotal();
+//   calculateTotal();
  
-}); 
+// }); 
 
 
 
