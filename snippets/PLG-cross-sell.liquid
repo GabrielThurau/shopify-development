@@ -276,7 +276,7 @@
          {%- for u in product.metafields.custom.upsells.value limit:4  %}
      <div class="name_single_pro_check is-checked">
        <!-- value, id, and for attributes are all based on variant_id: data price is based on variant price-->
-             <input type="checkbox-{{ forloop.index0 }}" name="upsell-product" id="" data-price="123" value="" checked="" />
+             <input type="checkbox" name="upsell-product" id="checkbox-{{ forloop.index0 }}" data-price="123" value="" checked="" />
              <label class="var_title" for="checkbox-{{ forloop.index0 }}"><span class="single_title">Pork Soup Dumplings (50 PC)</span><span class="single_price">$39.99</span>
              </label>
          </div>
