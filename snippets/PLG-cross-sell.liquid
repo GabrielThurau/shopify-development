@@ -376,7 +376,7 @@
    }
 
    static syncChecks() {
-     let selections = {};
+   
      let checkboxes = document.querySelectorAll('.name_single_pro_check input');
 
      // add click events to all of them
@@ -387,6 +387,7 @@
 
 
 static displayCheck(e) {
+    let selections = {};
   console.log(e.target)
   if (e.target.checked) {
     selections[e.target.id] = {
