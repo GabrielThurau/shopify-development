@@ -305,6 +305,20 @@
       }
     </script>
 
+    <script>
+	import { onMount } from 'svelte'
+	let QrCode
+	onMount(async () => {
+		QrCode = (await import('https://cdn.jsdelivr.net/npm/svelte-qrcode')).default
+	})
+</script>
+
+{#if QrCode}
+	 <svelte:component this={QrCode} value="123" />
+{:else}
+	 <p>Loading...</p>
+{/if}
+
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
