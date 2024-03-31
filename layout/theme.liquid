@@ -307,6 +307,33 @@
 
 <script type="module"> import svelte from https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm </script>
 
+
+  <script>
+  let count = 0;
+  let string = `You have clicked ${count} times`;
+
+  $: {
+    console.log(`the count is ${count}`);
+  }
+
+  const increment = () => {
+    count += 1;
+  };
+</script>
+
+<button class="counter-button" on:click={increment}>
+  count is {count}
+</button>
+
+<h3>{string}</h3>
+
+<style>
+  .counter-button {
+    padding: 15px 20px;
+    background-color: salmon;
+  }
+</style>
+
   
 
     {%- if settings.predictive_search_enabled -%}
