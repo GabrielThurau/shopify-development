@@ -334,6 +334,12 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
   }
 </style>
 
+       {% for product in collection["best-sellers"] %}
+   
+ <p class="product-title-test">{{product.title}}</p>
+   
+   {% endfor %}
+
 
     <script>
 
@@ -351,11 +357,7 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
    
    const productObjects = []
    
-   {% for product in collection["best-sellers"] %}
-   
- <p class="product-title-test">{{product.title}}</p>
-   
-   {% endfor %}
+
 
    //       {% for product in collection["best-sellers"] %}
    
