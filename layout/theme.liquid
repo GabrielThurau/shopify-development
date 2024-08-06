@@ -351,8 +351,7 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
    
    const productObjects = []
 
-{% assign collectionID = 'best-sellers' %}
-{% assign target = collections.all | where: 'id', collectionID | first %}
+{% assign target = collections.all | where: 'id', 'best-sellers' | first %}
    
    {% for product in target.products %}
    
