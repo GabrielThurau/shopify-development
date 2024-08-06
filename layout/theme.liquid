@@ -337,9 +337,9 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
 
     <script>
 
-    function createDataObject(id, title, handle, price) {
+    function createDataObject(title, id, handle, price) {
        const product = {};
-       product[id] = {
+       product[title] = {
          title,
          handle,
          price
@@ -351,11 +351,9 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
    
    const productObjects = []
 
-{% assign target = collections.all | where: 'handle', 'best-sellers' | first %}
-   
 {% for product in collections.best-sellers.products %}
    
-   productObjects.push(createDataObject({{  product.id   }}, '{{  product.title  }}', '{{  product.handle   }}', {{  product.price  }}))
+   productObjects.push(createDataObject('{{  product.title   }}', {{  product.id  }}, '{{  product.handle   }}', {{  product.price  }}))
 
    {% endfor %}
       
