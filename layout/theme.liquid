@@ -356,11 +356,13 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
    {% for product in target.products %}
    
    productObjects.push(createDataObject({{  product.id   }}, {{  product.title  }}, {{  product.handle   }}, {{  product.price  }}))
+
+  console.log(productObjects)
    
    {% endfor %}
       
 
-      console.log(productObjects)
+  
 
    </script>
 
