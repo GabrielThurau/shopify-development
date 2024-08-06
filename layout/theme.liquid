@@ -334,6 +334,31 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
   }
 </style>
 
+
+    <script>
+
+    function createDataObject(id, title, handle, price) {
+       const product = {};
+       product[id] = {
+         title,
+         handle,
+         price
+       };
+       return product;
+     }
+     
+     const productData = createDataObject();
+   
+   const productObjects = []
+   
+   {% for product in collection['best-sellers'] %}
+   
+   productObjects.push(createDataObject({{  product.id   }}, {{  product.title  }}, {{  product.handle   }}, {{  product.price  }}))
+   
+   {% endfor %}
+   
+   </script>
+
   
 
     {%- if settings.predictive_search_enabled -%}
