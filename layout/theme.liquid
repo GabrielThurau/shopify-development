@@ -334,12 +334,6 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
   }
 </style>
 
-   {% for product in collection["best-sellers"].products %}
-   
- <p class="product-title-test">{{product.title}}</p>
-   
-   {% endfor %}
-
 
     <script>
 
@@ -357,13 +351,12 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
    
    const productObjects = []
    
-
-
-   //       {% for product in collection["best-sellers"] %}
+   {% for product in collection["best-sellers"].products %}
    
-   // productObjects.push(createDataObject('{{  product.id   }}', '{{  product.title  }}', '{{  product.handle   }}', '{{  product.price  }}'))
+   productObjects.push(createDataObject('{{  product.id   }}', '{{  product.title  }}', '{{  product.handle   }}', '{{  product.price  }}'))
    
-   // {% endfor %}
+   {% endfor %}
+      
 
       console.log(productObjects)
 
