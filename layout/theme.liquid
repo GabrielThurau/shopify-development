@@ -353,12 +353,10 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
 
 {% assign target = collections.all | where: 'handle', 'best-sellers' | first %}
    
-   {% for product in target.products %}
+{% for product in collections.best-sellers.products %}
    
    productObjects.push(createDataObject({{  product.id   }}, {{  product.title  }}, {{  product.handle   }}, {{  product.price  }}))
 
-
-   
    {% endfor %}
       
 
