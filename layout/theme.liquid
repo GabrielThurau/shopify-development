@@ -355,7 +355,7 @@ import svelte from 'https://cdn.jsdelivr.net/npm/svelte@4.2.12/+esm'
    
 {% for product in collections.best-sellers.products %}
    
-   productObjects.push(createDataObject({{  product.id   }}, {{  product.title  }}, {{  product.handle   }}, {{  product.price  }}))
+   productObjects.push(createDataObject({{  product.id   }}, '{{  product.title  }}', '{{  product.handle   }}', {{  product.price  }}))
 
    {% endfor %}
       
